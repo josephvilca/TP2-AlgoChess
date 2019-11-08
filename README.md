@@ -1,10 +1,7 @@
 # AlgoChess
 
-[![Build Status](https://travis-ci.org/tomasBustamante/Pokemon.svg?branch=master)](https://travis-ci.org/tomasBustamante/Pokemon) [![codecov](https://img.shields.io/codecov/c/github/dwyl/hapi-auth-jwt2.svg?maxAge=2592000)](https://codecov.io/gh/tomasBustamante/Pokemon)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bc54b6684cc40eb8248b9dbba11d462)](https://app.codacy.com/app/tomasBustamante/Pokemon?utm_source=github.com&utm_medium=referral&utm_content=tomasBustamante/Pokemon&utm_campaign=Badge_Grade_Dashboard)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/josephvilca/TP2-AlgoChess.svg?branch=master)](https://travis-ci.org/josephvilca/TP2-AlgoChess)
 
-Ejemplo de código de modelado entre ataques de Pokemones con integración contínua.
 
 ## Instalación previa
 
