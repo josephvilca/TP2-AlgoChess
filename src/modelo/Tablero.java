@@ -25,35 +25,42 @@ public class Tablero {
 		this.casillas.put(posicionDeUnidad, unidad);
 	}
 	
-
+	public UnidadDeJuego obtenerUnidad(Posicion posicion){
+		return this.casillas.get(posicion);
+	}
+	
+	private void moverUnidad(UnidadDeJuego unidad, Posicion desde, Posicion hasta){
+		
+		if(unidad.puedoMoverme() && !this.casillas.containsKey(desde)){
+			this.casillas.remove(desde);
+			this.casillas.put(hasta, unidad);
+			unidad.mover(hasta);
+		}
+	}
+	
 	public void moverUnidadAdelante(Posicion posicionDeUnidad){
 		
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.casillas.remove(posicionDeUnidad);
-		this.casillas.put(unidad.arriba(), unidad);
+		this.moverUnidad(unidad, posicionDeUnidad, unidad.arriba());
 		
 	}
 	
 	public void moverUnidadAtras(Posicion posicionDeUnidad){
 		
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.casillas.remove(posicionDeUnidad);
-		this.casillas.put(unidad.abajo(), unidad);
-		
+		this.moverUnidad(unidad, posicionDeUnidad, unidad.abajo());
 	}
 	
 	public void moverUnidadDerecha(Posicion posicionDeUnidad){
-		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.casillas.remove(posicionDeUnidad);
-		this.casillas.put(unidad.derecha(), unidad);
 		
+		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
+		this.moverUnidad(unidad, posicionDeUnidad, unidad.derecha());
 	}
 	
 	public void moverUnidadIzquierda(Posicion posicionDeUnidad){
+
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.casillas.remove(posicionDeUnidad);
-		this.casillas.put(unidad.izquierda(), unidad);
-		
+		this.moverUnidad(unidad, posicionDeUnidad, unidad.izquierda());
 	}
 		
 	

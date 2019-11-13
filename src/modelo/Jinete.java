@@ -12,12 +12,9 @@ public class Jinete extends UnidadDeJuego{
 		this.rangeDamage = 15;
 		
 	}
-	
-	public void mover(){
-		
+
+	public boolean puedoMoverme(){
+		return true;
 	}
 	
-	public void recibirDano(){
-		
-	}
 }

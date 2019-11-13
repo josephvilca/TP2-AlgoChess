@@ -11,12 +11,9 @@ public class SoldadoInfanteria extends UnidadDeJuego {
 		this.rangeDamage = 0;
 	}
 	
-	public void mover(){
-		
+	public boolean puedoMoverme(){
+		return true;
 	}
 	
-	public void recibirDano(){
-		
-	}
 	
 }

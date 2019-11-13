@@ -9,7 +9,9 @@ public class Curandero extends UnidadDeJuego{
 		this.vida = 75;
 	}
 	
-	public void recibirDano(){
-		
+	public boolean puedoMoverme(){
+		return true;
 	}
+	
+
 }

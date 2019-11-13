@@ -12,7 +12,13 @@ public class Catapulta extends UnidadDeJuego{
 		this.rangeDamage = 20;
 	}
 	
-	public void recibirDano(){
+	public void mover(){
 		
 	}
+	public boolean puedoMoverme(){
+		return false;
+	}
+	
+
+	
 }
