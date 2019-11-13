@@ -31,7 +31,7 @@ public class Tablero {
 	
 	private void moverUnidad(UnidadDeJuego unidad, Posicion desde, Posicion hasta){
 		
-		if(unidad.puedoMoverme() && !this.casillas.containsKey(desde)){
+		if(unidad.puedoMoverme() && !this.casillas.containsKey(hasta)){
 			this.casillas.remove(desde);
 			this.casillas.put(hasta, unidad);
 			unidad.mover(hasta);
@@ -41,26 +41,26 @@ public class Tablero {
 	public void moverUnidadAdelante(Posicion posicionDeUnidad){
 		
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, unidad.arriba());
+		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionArriba());
 		
 	}
 	
 	public void moverUnidadAtras(Posicion posicionDeUnidad){
 		
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, unidad.abajo());
+		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionAbajo());
 	}
 	
 	public void moverUnidadDerecha(Posicion posicionDeUnidad){
 		
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, unidad.derecha());
+		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionDerecha());
 	}
 	
 	public void moverUnidadIzquierda(Posicion posicionDeUnidad){
 
 		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, unidad.izquierda());
+		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionIzquierda());
 	}
 		
 	
