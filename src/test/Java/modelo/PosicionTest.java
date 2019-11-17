@@ -1,4 +1,7 @@
-package test.modelo;
+package modelo;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
 
 public class PosicionTest {
 
@@ -9,7 +12,7 @@ public class PosicionTest {
     	Posicion posicionDerecha = new Posicion(4,5);
     	
     	
-    	Assert.assertTrue(posicionDerecha.equals(posicion.getPosicionDerecha));
+    	assertTrue(posicionDerecha.equals(posicion.getPosicionDerecha()));
 
     }
 
@@ -20,7 +23,7 @@ public class PosicionTest {
     	Posicion posicionIzquierda= new Posicion(2,5);
     	
     	
-    	Assert.assertTrue(posicionIzquierda.equals(posicion.getPosicionIzquierda));
+    	assertTrue(posicionIzquierda.equals(posicion.getPosicionIzquierda()));
 
     }
 	
@@ -31,7 +34,7 @@ public class PosicionTest {
     	Posicion posicionAbajo = new Posicion(3,4);
     	
     	
-    	Assert.assertTrue(posicionAbajo.equals(posicion.getPosicionAbajo));
+    	assertTrue(posicionAbajo.equals(posicion.getPosicionAbajo()));
 
     }
 	
@@ -42,7 +45,7 @@ public class PosicionTest {
     	Posicion posicionArriba= new Posicion(3,6);
     	
     	
-    	Assert.assertTrue(posicionArriba.equals(posicion.getPosicionArriba));
+    	assertTrue(posicionArriba.equals(posicion.getPosicionArriba()));
 
     }
 	

@@ -1,8 +1,7 @@
-package test.modelo;
+package modelo;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
-import modelo.*;
 
 public class UnidadesTest {
 
@@ -16,14 +15,15 @@ public class UnidadesTest {
     	
     	Posicion posicionInicial = new Posicion(5,2);
     	Posicion posicionDerecha = new Posicion(6,2);
-    	
+
+
     	tablero.posicionarUnidad(posicionInicial, jinete);
     	tablero.moverUnidadDerecha(posicionInicial);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionDerecha);
     	
     	
-    	Assert.assertEquals(resultado, jinete);
+    	assertEquals(resultado, jinete);
 
     }
     
@@ -43,7 +43,7 @@ public class UnidadesTest {
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionIzquierda);
     	
     	
-    	Assert.assertEquals(resultado, jinete);
+    	assertEquals(resultado, jinete);
 
     }
 
@@ -58,12 +58,12 @@ public class UnidadesTest {
     	Posicion posicionAbajo = new Posicion(5,1);
     	
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadAbajo(posicionInicial);
+    	tablero.moverUnidadAtras(posicionInicial);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionAbajo);
     	
     	
-    	Assert.assertEquals(resultado, jinete);
+    	assertEquals(resultado, jinete);
 
     }
 
@@ -79,12 +79,12 @@ public class UnidadesTest {
     	Posicion posicionArriba= new Posicion(5,3);
     	
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadArriba(posicionInicial);
+    	tablero.moverUnidadAdelante(posicionInicial);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionArriba);
     	
     	
-    	Assert.assertEquals(resultado, jinete);
+    	assertEquals(resultado, jinete);
 
     }
     
@@ -104,12 +104,12 @@ public class UnidadesTest {
     	tablero.posicionarUnidad(posicionInicialJinete, jinete);
     	tablero.posicionarUnidad(posicionAbajo, curandero);
     	
-    	tablero.moverUnidadAbajo(posicionInicialJinete);
+    	tablero.moverUnidadAtras(posicionInicialJinete);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionInicialJinete);
     	
     	
-    	Assert.assertEquals(resultado, jinete);
+    	assertEquals(resultado, jinete);
 
     }
 
