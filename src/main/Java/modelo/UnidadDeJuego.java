@@ -13,6 +13,10 @@ public abstract class UnidadDeJuego {
 		this.posicion = nuevaPos;
 	}
 	
+	public int costo(){
+		return this.costo;
+	}
+	
 	public abstract boolean puedoMoverme();
 	
 	public Posicion derecha(){
@@ -30,6 +34,7 @@ public abstract class UnidadDeJuego {
 	public Posicion arriba(){
 		return posicion.getPosicionArriba();
 	}
-	
+
+
 	
 }
