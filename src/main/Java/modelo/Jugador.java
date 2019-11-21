@@ -25,4 +25,9 @@ public class Jugador {
 	public int numeroDePiezas(){
 		return this.unidades.size();
 	}
+	
+	public UnidadDeJuego obtenerUnidad(int indice){
+		return this.unidades.remove(indice);
+		
+	}
 }

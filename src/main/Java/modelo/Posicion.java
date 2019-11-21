@@ -59,7 +59,16 @@ public class Posicion{
 		return new Posicion(this.x-1, this.y);
 	}
 
-
+	public int distanciaX(Posicion pos){
+		int res = pos.x - this.x;
+		return Math.abs(res);
+	}
+	
+	public int distanciaY(Posicion pos){
+		int res = pos.y - this.y;
+		return Math.abs(res);
+	}
+	
 	public boolean estaEnLimmites(int limiteInfX, int limiteInfY ,int limiteSupX ,int limiteSupY) {
 		
 		boolean ok1 = (this.x >= limiteInfX && this.x < limiteSupX);

@@ -13,5 +13,19 @@ public class Curandero extends UnidadDeJuego{
 		return true;
 	}
 	
+	public void curar(UnidadDeJuego unidad){
+		unidad.recibirDano(curacion*-1);
+	}
+	
+	public void atacar(UnidadDeJuego victima){
+	}
+	
+	public void atacarMeele(UnidadDeJuego victima){
+	;
+	}
+
+	public void atacarRange(UnidadDeJuego victima){
+	;
+	}
 
 }
