@@ -5,7 +5,8 @@ public class SoldadoInfanteria extends UnidadDeJuego {
 	private int meeleDamage, rangeDamage; 
 	private Ataque ataque;
 	
-	public SoldadoInfanteria(){
+	public SoldadoInfanteria(Jugador dueno){
+		super(dueno);
 		this.costo = 1;
 		this.vida = 100;
 		this.meeleDamage = 10;

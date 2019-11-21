@@ -4,7 +4,8 @@ public class Curandero extends UnidadDeJuego{
 	
 	private int curacion = 15;
 	
-	public Curandero(){
+	public Curandero(Jugador dueno){
+		super(dueno);
 		this.costo = 2;
 		this.vida = 75;
 	}

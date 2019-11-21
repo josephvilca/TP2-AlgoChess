@@ -20,20 +20,19 @@ public class Juego {
 	
 	public void seleccionarDelTablero(int x, int y) {
 		Posicion posicionSeleccionada = new Posicion(x,y);
-		unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
-		
+		if(this.turno % 2 == 0){  //jugador 2 
+			
+			this.unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
+			if(!this.unidadSeleccionada.perteneceA(jugador2))
+				this.unidadSeleccionada = null;	
+		}
 	}
 	
-	public void seleccionarDelJugador(int indice) {
-		unidadSeleccionada = this.jugador1.obtenerUnidad(indice);
-		
+	public UnidadDeJuego obtenerUnidadDelTablero(int x, int y){
+		Posicion posicionUnidad= new Posicion(x,y);
+		return this.tablero.obtenerUnidad(posicionUnidad);	
 	}
 	
-	public void  accionarSobreUnidad(Posicion posicionUnidad) {
-		UnidadDeJuego unidadObjetivo = this.tablero.obtenerUnidad(posicionUnidad);
-		
-	
-	}
 	
 	public void posicionarUnidad(int x, int y){
 		Posicion posicionSeleccionada = new Posicion(x,y);
@@ -47,10 +46,18 @@ public class Juego {
 	public void atacar(int x, int y){
 		Posicion pos = new Posicion(x, y);
 		UnidadDeJuego victima = this.tablero.obtenerUnidad(pos);
-		if(this.turno % 2 == 0){  
-			this.unidadSeleccionada.atacarMeele(victima);
+		this.unidadSeleccionada.atacar(victima);
+		this.terminarTurno();
+	}
+	
+	public void moverPiezaSeleccionada(int opcion){
+		if(this.unidadSeleccionada == null) return;
+		switch (opcion){
+			case 0:this.tablero.moverUnidadAdelante(this.unidadSeleccionada.posicion);
+			case 1:this.tablero.moverUnidadAtras(this.unidadSeleccionada.posicion);
+			case 2:this.tablero.moverUnidadDerecha(this.unidadSeleccionada.posicion);
+			case 3:this.tablero.moverUnidadIzquierda(this.unidadSeleccionada.posicion);
 		}
-		else this.unidadSeleccionada.atacarMeele(victima);			;
 	}
 	
 	public void comprarUnidad(int indice, int x, int y){
@@ -58,11 +65,11 @@ public class Juego {
 
 		if(this.turno % 2 == 0){  
 			this.tienda.venderUnidad(jugador2, indice);
-			this.tablero.posicionarUnidad(posicionNueva, this.jugador2.obtenerUnidad(indice));
+			this.tablero.posicionarUnidad(posicionNueva, this.jugador2.obtenerUnidadReciente());
 		}
 		else{
 			this.tienda.venderUnidad(jugador1, indice);
-			this.tablero.posicionarUnidad(posicionNueva, this.jugador1.obtenerUnidad(indice));
+			this.tablero.posicionarUnidad(posicionNueva, this.jugador1.obtenerUnidadReciente());
 		}
 	}
 }

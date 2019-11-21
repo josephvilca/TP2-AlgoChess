@@ -26,8 +26,11 @@ public class Jugador {
 		return this.unidades.size();
 	}
 	
-	public UnidadDeJuego obtenerUnidad(int indice){
-		return this.unidades.remove(indice);
-		
+	public UnidadDeJuego obtenerUnidadReciente(){
+		return this.unidades.get(this.unidades.size()-1);
+	}
+	
+	public void perderPieza(UnidadDeJuego pieza){
+		this.unidades.remove(pieza);
 	}
 }

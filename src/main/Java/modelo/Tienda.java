@@ -6,13 +6,13 @@ public class Tienda {
 		
 		switch (indiceItem){
 			
-			case 0: return jugador.comprar(new SoldadoInfanteria());
+			case 0: return jugador.comprar(new SoldadoInfanteria(jugador));
 					
-			case 1: return jugador.comprar(new Jinete());
+			case 1: return jugador.comprar(new Jinete(jugador));
 			
-			case 2: return jugador.comprar(new Curandero());
+			case 2: return jugador.comprar(new Curandero(jugador));
 			
-			case 3: return jugador.comprar(new Catapulta());
+			case 3: return jugador.comprar(new Catapulta(jugador));
 						
 		}
 		return false;
