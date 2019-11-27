@@ -2,7 +2,7 @@ package modelo;
 
 public abstract class UnidadDeJuego {
 
-	protected int vida, costo, rango;
+	protected int vida, costo;
 	public Posicion posicion;
 	public Jugador dueno;
 	
@@ -39,9 +39,9 @@ public abstract class UnidadDeJuego {
 		return this.costo;
 	}
 	
-	public void actualizarPosicion(Posicion nuevaPos){
+	/*public void actualizarPosicion(Posicion nuevaPos){
 		this.posicion = nuevaPos;
-	}
+	}*/
 	
 	public abstract boolean puedoMoverme();
 	

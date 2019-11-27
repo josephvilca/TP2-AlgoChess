@@ -5,8 +5,12 @@ public class Juego {
 	Tablero tablero;
 	Tienda tienda;
 	Jugador jugador1, jugador2;
+	Jugador turnoActual;
 	UnidadDeJuego unidadSeleccionada;
 	private int turno;
+	public TurnoDeJugador turnoDeJugador;
+	public TurnoDeJugador turnoJugador1, turnoJugador2;
+	
 	
 	// TURNOS IMPARES JUGADOR 1, TURNOS PARES JUGADOR 2
 	public Juego() {
@@ -15,17 +19,26 @@ public class Juego {
 		this.jugador1 = new Jugador(20);
 		this.jugador2 = new Jugador(20);
 		this.tienda = new Tienda();
+		turnoActual = jugador1;
 		
+		
+	}
+	
+	public void setNombreJugador1(String nombre){
+		this.jugador1.setNombre(nombre);
+	}
+
+	public void setNombreJugador2(String nombre){
+		this.jugador2.setNombre(nombre);
+	}
+
+	public void cambiarTurno(TurnoDeJugador turno){
+		this.turnoDeJugador= turno;
 	}
 	
 	public void seleccionarDelTablero(int x, int y) {
 		Posicion posicionSeleccionada = new Posicion(x,y);
-		if(this.turno % 2 == 0){  //jugador 2 
-			
-			this.unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
-			if(!this.unidadSeleccionada.perteneceA(jugador2))
-				this.unidadSeleccionada = null;	
-		}
+		this.unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
 	}
 	
 	public UnidadDeJuego obtenerUnidadDelTablero(int x, int y){
@@ -41,12 +54,23 @@ public class Juego {
 
 	public void terminarTurno(){
 		this.turno++;
+		if(this.turno % 2 == 0 ) {
+			this.turnoActual = this.jugador2;
+			this.tablero.actualizarUnidadesDeJugadores(this.jugador2.unidades, this.jugador1.unidades);
+		}else{
+			this.turnoActual = this.jugador1;
+			this.tablero.actualizarUnidadesDeJugadores(this.jugador1.unidades, this.jugador2.unidades);
+			
+		}
+		
+		
 	}
 	
 	public void atacar(int x, int y){
 		Posicion pos = new Posicion(x, y);
-		UnidadDeJuego victima = this.tablero.obtenerUnidad(pos);
-		this.unidadSeleccionada.atacar(victima);
+		this.tablero.atacar(this.unidadSeleccionada, pos);
+		//UnidadDeJuego victima = this.tablero.obtenerUnidad(pos);
+		//this.unidadSeleccionada.atacar(victima);
 		this.terminarTurno();
 	}
 	
@@ -60,16 +84,12 @@ public class Juego {
 		}
 	}
 	
+	
 	public void comprarUnidad(int indice, int x, int y){
 		Posicion posicionNueva = new Posicion(x,y);
 
-		if(this.turno % 2 == 0){  
-			this.tienda.venderUnidad(jugador2, indice);
-			this.tablero.posicionarUnidad(posicionNueva, this.jugador2.obtenerUnidadReciente());
-		}
-		else{
-			this.tienda.venderUnidad(jugador1, indice);
-			this.tablero.posicionarUnidad(posicionNueva, this.jugador1.obtenerUnidadReciente());
-		}
+		this.tienda.venderUnidad(this.turnoActual, indice);
+		this.tablero.posicionarUnidad(posicionNueva, this.turnoActual.obtenerUnidadReciente());
+		
 	}
 }

@@ -1,8 +1,9 @@
 package modelo;
+import java.util.*;
 
 public class Posicion{
 
-
+	
 	public int x;
 	public int y;
 
@@ -13,7 +14,48 @@ public class Posicion{
 		
 	}
 
+	// rango 1 o 2
+	public List<UnidadDeJuego> unidadesCercanas(Tablero tablero){
+		List<UnidadDeJuego> lista = new ArrayList<UnidadDeJuego>();
 
+		UnidadDeJuego unidad = tablero.obtenerUnidad(this.getPosicionAbajo());
+		if(unidad != null)
+			lista.add(unidad);
+		unidad = tablero.obtenerUnidad(this.getPosicionArriba());
+		
+		if(unidad != null)
+			lista.add(unidad);
+		
+		unidad = tablero.obtenerUnidad(this.getPosicionDerecha());
+		
+		if(unidad != null)
+			lista.add(unidad);
+
+		unidad = tablero.obtenerUnidad(this.getPosicionIzquierda());
+		
+		if(unidad != null)
+			lista.add(unidad);
+		
+		//distancia 2
+		unidad = tablero.obtenerUnidad(new Posicion(x+2, y));
+		if(unidad != null)
+			lista.add(unidad);
+
+		unidad = tablero.obtenerUnidad(new Posicion(x-2, y));
+		if(unidad != null)
+			lista.add(unidad);
+
+		unidad = tablero.obtenerUnidad(new Posicion(x, y-2));
+		if(unidad != null)
+			lista.add(unidad);
+
+		unidad = tablero.obtenerUnidad(new Posicion(x-2, y+2));
+		if(unidad != null)
+			lista.add(unidad);
+
+		return lista;
+	}
+	
 	@Override
 	public boolean equals(Object obj){
 		
@@ -57,6 +99,12 @@ public class Posicion{
 
 	public Posicion getPosicionIzquierda() {
 		return new Posicion(this.x-1, this.y);
+	}
+	
+	public float distancia(Posicion pos){
+		float xPart = (float)Math.pow(this.x - pos.x, 2);
+		float yPart = (float)Math.pow(this.y - pos.y, 2);
+		return (float)Math.sqrt(xPart+yPart) ;
 	}
 
 	public int distanciaX(Posicion pos){

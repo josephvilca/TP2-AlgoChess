@@ -5,8 +5,9 @@ import java.util.*;
 public class Jugador {
 	
 	int monedas;
+	String nombre;
 	protected HashMap<Posicion, UnidadDeJuego> casillas;
-	protected List<UnidadDeJuego> unidades;
+	public List<UnidadDeJuego> unidades;
 	
 	public Jugador(int cantidadMonedas) {
 		this.monedas = cantidadMonedas;
@@ -32,5 +33,9 @@ public class Jugador {
 	
 	public void perderPieza(UnidadDeJuego pieza){
 		this.unidades.remove(pieza);
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 }

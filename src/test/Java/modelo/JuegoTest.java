@@ -20,7 +20,7 @@ public class JuegoTest {
     	
     	juego.seleccionarDelTablero(9, 9);
     	juego.atacar(10, 10);
-    	juego.terminarTurno();
+    	juego.terminarTurno();	 
     	
     	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
     	assertEquals(unidad.vida(), 40);
