@@ -13,6 +13,10 @@ public class Jinete extends UnidadDeJuego{
 		
 	}
 
+	public void accionar(Tablero tablero, Posicion pos){
+		tablero.atacar(this, pos);
+	}
+	
 	public void atacar(UnidadDeJuego victima){
 		
 		this.ataque.atacar(this, victima);

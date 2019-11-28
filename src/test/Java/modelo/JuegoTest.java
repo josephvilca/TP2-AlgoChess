@@ -26,6 +26,71 @@ public class JuegoTest {
     }
 	
 	@Test
+    public void jineteAtacaCatapultaSolaYSuAtaqueEsCercano(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(1, 9, 9);
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(3, 9, 10);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 9);
+    	juego.atacar(9, 10);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 10);
+    	assertEquals(unidad.vida(), 45);
+
+    }
+
+	@Test
+    public void jineteConSoldadoDeInfanteriaCercaAtacaCatapultaConAtaqueMedianoYNoLoPuedeAtacar(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(1, 9, 9);
+    	juego.comprarUnidad(0, 7, 9);
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(3, 9, 10);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 9);
+    	juego.atacar(9, 10);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 10);
+    	assertEquals(unidad.vida(), 50);
+
+    }
+	
+	@Test
+    public void jineteConSoldadoDeInfanteriaCercaAtacaCatapultaConAtaqueMediano(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(1, 9, 9);
+    	juego.comprarUnidad(0, 7, 9);
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(3, 9, 12);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 9);
+    	juego.atacar(9, 12);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 12);
+    	assertEquals(unidad.vida(), 35);
+
+    }
+	
+		
+	
+	
+	@Test
     public void curanderoCuraSoldadoInfanteriaAliado(){
  
     	Juego juego = new Juego();
@@ -52,6 +117,7 @@ public class JuegoTest {
     	assertEquals(unidad.vida(), 95);
 
     }
+	
 	@Test
     public void jugadorCompra3Unidades(){
  
@@ -63,10 +129,52 @@ public class JuegoTest {
 
     	juego.seleccionarDelTablero(9, 9);
 
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
+    	//UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
     	assertEquals(juego.turnoActual.numeroDePiezas(), 3);
 
     }
 
+	@Test
+    public void catapultaAtacaSoldadoAdistanciaLejana(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(3, 9, 3);
+
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(0, 9, 12);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 3);
+    	juego.atacar(9, 12);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 12);
+    	assertEquals(unidad.vida(), 80);
+
+    }
+
+	@Test
+    public void catapultaAtacaSoldadoAdistanciaMedianaYNoDanaAlEnemigo(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(3, 9, 6);
+
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(0, 9, 11);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 6);
+    	juego.atacar(9, 11);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 11);
+    	assertEquals(unidad.vida(), 100);
+
+    }
+		
 	
 }

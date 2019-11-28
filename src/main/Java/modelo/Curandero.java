@@ -13,6 +13,10 @@ public class Curandero extends UnidadDeJuego{
 		return true;
 	}
 	
+	public void accionar(Tablero tablero, Posicion pos){
+		tablero.curar(this, pos);
+	}
+	
 	public void curar(UnidadDeJuego unidad){
 		unidad.recibirDano(curacion*-1);
 	}

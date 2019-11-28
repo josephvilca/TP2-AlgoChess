@@ -24,6 +24,7 @@ public abstract class UnidadDeJuego {
 	}
 	
 	public abstract void atacar(UnidadDeJuego victima);
+	public abstract void accionar(Tablero tablero, Posicion pos);
 	
 	public abstract void atacarMeele(UnidadDeJuego victima);
 

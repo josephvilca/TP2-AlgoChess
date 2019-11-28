@@ -17,6 +17,10 @@ public class SoldadoInfanteria extends UnidadDeJuego {
 		return true;
 	}
 	
+	public void accionar(Tablero tablero, Posicion pos){
+		tablero.atacar(this, pos);
+	}
+	
 
 	public void atacarMeele(UnidadDeJuego victima){
 		victima.recibirDano(this.meeleDamage);

@@ -8,8 +8,6 @@ public class Juego {
 	Jugador turnoActual;
 	UnidadDeJuego unidadSeleccionada;
 	private int turno;
-	public TurnoDeJugador turnoDeJugador;
-	public TurnoDeJugador turnoJugador1, turnoJugador2;
 	
 	
 	// TURNOS IMPARES JUGADOR 1, TURNOS PARES JUGADOR 2
@@ -21,7 +19,10 @@ public class Juego {
 		this.tienda = new Tienda();
 		turnoActual = jugador1;
 		
-		
+	}
+	
+	public String getNombreJugadorTurnoActual(){
+		return this.turnoActual.getNombre();
 	}
 	
 	public void setNombreJugador1(String nombre){
@@ -32,10 +33,6 @@ public class Juego {
 		this.jugador2.setNombre(nombre);
 	}
 
-	public void cambiarTurno(TurnoDeJugador turno){
-		this.turnoDeJugador= turno;
-	}
-	
 	public void seleccionarDelTablero(int x, int y) {
 		Posicion posicionSeleccionada = new Posicion(x,y);
 		this.unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
@@ -68,15 +65,15 @@ public class Juego {
 	
 	public void atacar(int x, int y){
 		Posicion pos = new Posicion(x, y);
-		this.tablero.atacar(this.unidadSeleccionada, pos);
+		//this.tablero.atacar(this.unidadSeleccionada, pos);
+		this.tablero.accionar(this.unidadSeleccionada, pos);
 		this.terminarTurno();
 	}
 	
 	public void curar(int x, int y){
 		Posicion pos = new Posicion(x, y);
-		this.tablero.curar(this.unidadSeleccionada, pos);
-		//UnidadDeJuego victima = this.tablero.obtenerUnidad(pos);
-		//this.unidadSeleccionada.atacar(victima);
+		//this.tablero.curar(this.unidadSeleccionada, pos);
+		this.tablero.accionar(this.unidadSeleccionada, pos);
 		this.terminarTurno();
 	}
 	

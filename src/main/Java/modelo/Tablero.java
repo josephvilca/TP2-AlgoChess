@@ -11,7 +11,6 @@ public class Tablero {
 	public Tablero(){
 		
 		this.casillas = new HashMap<Posicion, UnidadDeJuego>();
-		
 	}
 
 	public boolean posicionInvalida(Posicion unaPosicion){
@@ -98,8 +97,12 @@ public class Tablero {
 
 	public void atacar(Jinete atacante, Posicion posVictima){
 		
+		System.out.println("CABALLO A PUNTO DE ATACAR");
+		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
 		List<UnidadDeJuego> unidadesCerca = atacante.posicion.unidadesCercanas(this);
+		System.out.println(unidadesCerca.size());
+		
 		boolean ataqueMediano= false;
 		boolean enemigosCerca = false;
 		for(UnidadDeJuego u : unidadesCerca){
@@ -125,19 +128,20 @@ public class Tablero {
 		
 	}
 
-	public void atacar(SoldadoInfanteria atacante, Posicion posVictima){
-		System.out.println("ACAAA");
+
+	public void atacar(UnidadDeJuego atacante, Posicion posVictima){
+		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
 
 		atacante.atacar(victima);
 		
 	}
 	
-	public void atacar(UnidadDeJuego atacante, Posicion posVictima){
+	public void accionar(UnidadDeJuego atacante, Posicion posObjetivo){
 		
-		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
-
-		atacante.atacar(victima);
+		//UnidadDeJuego objetivo = this.obtenerUnidad(posObjetivo);
+		atacante.accionar(this, posObjetivo);
+		
 		
 	}
 

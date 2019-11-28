@@ -13,6 +13,10 @@ public class Catapulta extends UnidadDeJuego{
 		this.ataque = new AtaqueLejano();
 	}
 	//solo distancia lejana
+	public void accionar(Tablero tablero, Posicion posObjetivo){
+		tablero.atacar(this, posObjetivo);
+	}
+	
 	public void atacar(UnidadDeJuego victima){
 		this.ataque.atacar(this, victima);
 	}

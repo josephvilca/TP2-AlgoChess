@@ -80,8 +80,11 @@ public class AlgoChess extends Application {
             JuegoVista juegoVista = new JuegoVista(controladorDeEscena);
             controladorDeEscena.agregarEscena("juegoVista", juegoVista.pane());
             
+            PreJuego preJuego = new PreJuego(controladorDeEscena, juegoVista);
+            controladorDeEscena.agregarEscena("preJuego", preJuego.pane());
+            
             btnJugar.setOnAction(e -> {
-                controladorDeEscena.activate("juegoVista");
+                controladorDeEscena.activate("preJuego");
             });
             btnCreditos.setOnAction(e -> {
                 controladorDeEscena.activate("creditos");
@@ -94,6 +97,8 @@ public class AlgoChess extends Application {
             System.out.println("Iniciando el juego");
             Juego juego = new Juego();
 
+            ControladorJuego controladorJuego = new ControladorJuego(juegoVista, juego);
+            juegoVista.setControlador(controladorJuego);
             //primaryStage.getIcons().add(new Image(AlgoCraft.class.getResourceAsStream("../../../res/icon.png")));
             primaryStage.setScene(scene);
             //scene.getStylesheets().add(AlgoCraft.class.getResource("../../../res/AlgoCraft.css").toExternalForm());

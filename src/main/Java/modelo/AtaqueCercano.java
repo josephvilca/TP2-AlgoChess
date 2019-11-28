@@ -14,8 +14,7 @@ public class AtaqueCercano extends Ataque{
 		if(x <= this.rangoMax && y <= this.rangoMax){
 			atacante.atacarMeele(victima);
 		}*/
-		
-		if(atacante.posicion.aDistancia1(victima.posicion))
+		if(atacante.posicion.aDistancia1(victima.posicion) || atacante.posicion.aDistancia2(victima.posicion))
 			atacante.atacarMeele(victima);
 	}
 }
