@@ -55,65 +55,7 @@ public class Tablero {
 		return this.casillas.get(posicion);
 	}
 	
-	private void moverUnidad(UnidadDeJuego unidad, Posicion desde, Posicion hasta){
-		
-		if(unidad.puedoMoverme() && !this.casillas.containsKey(hasta) && this.unidadesJugadorActual.contains(unidad)){
-			this.casillas.remove(desde);
-			this.casillas.put(hasta, unidad);
-			unidad.mover(hasta);
-			
-		}
-	}	
 	
-	private void moverUnidad(SoldadoInfanteria unidad, Posicion desde, Posicion hasta){
-		
-		List<UnidadDeJuego> unidadesCerca = unidad.posicion.unidadesCercanas(this);
-		
-		for(UnidadDeJuego u : unidadesCerca){
-			if(u.posicion.aDistancia1(desde) && this.unidadesJugadorActual.contains(u)){
-				if(!this.casillas.containsKey(hasta)){
-					this.casillas.remove(u);
-					this.casillas.put(hasta, unidad);
-					unidad.mover(hasta);
-				
-				}				
-			}
-				
-		}
-
-		if(!this.casillas.containsKey(hasta) && this.unidadesJugadorActual.contains(unidad)){
-			this.casillas.remove(desde);
-			this.casillas.put(hasta, unidad);
-			unidad.mover(hasta);
-			
-		}
-	}	
-	
-	public void moverUnidadAdelante(Posicion posicionDeUnidad){
-		
-		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionArriba());
-		
-	}
-	
-	public void moverUnidadAtras(Posicion posicionDeUnidad){
-		
-		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionAbajo());
-	}
-	
-	public void moverUnidadDerecha(Posicion posicionDeUnidad){
-		
-		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionDerecha());
-	}
-	
-	public void moverUnidadIzquierda(Posicion posicionDeUnidad){
-
-		UnidadDeJuego unidad =  this.casillas.get(posicionDeUnidad);
-		this.moverUnidad(unidad, posicionDeUnidad, posicionDeUnidad.getPosicionIzquierda());
-	}
-
 	public void atacar(Jinete atacante, Posicion posVictima){
 		
 		System.out.println("CABALLO A PUNTO DE ATACAR");

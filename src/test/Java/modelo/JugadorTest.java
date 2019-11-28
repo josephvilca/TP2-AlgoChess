@@ -22,4 +22,17 @@ public class JugadorTest {
 
     }
 
+	@Test
+    public void jugadorSeQuedaSinEntidadesPierde(){
+ 
+    	Jugador jugador = new Jugador(20);
+    	Tienda tienda = new Tienda ();
+
+    	
+    	
+    	assertTrue(jugador.derrotado());
+
+    }
+	
+	
 }

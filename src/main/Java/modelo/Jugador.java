@@ -43,4 +43,8 @@ public class Jugador {
 		return this.nombre;
 				
 	}
+	
+	public boolean derrotado(){
+		return numeroDePiezas() == 0;
+	}
 }

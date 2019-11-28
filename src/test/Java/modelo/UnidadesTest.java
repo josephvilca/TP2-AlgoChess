@@ -18,7 +18,8 @@ public class UnidadesTest {
 
 
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadDerecha(posicionInicial);
+    	//tablero.moverUnidad(posicionInicial, posicionDerecha);
+    	tablero.posicionarUnidad(posicionDerecha, jinete);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionDerecha);
     	
@@ -38,7 +39,7 @@ public class UnidadesTest {
     	Posicion posicionIzquierda = new Posicion(4,2);
     	
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadIzquierda(posicionInicial);
+    	tablero.posicionarUnidad(posicionIzquierda, jinete);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionIzquierda);
     	
@@ -58,8 +59,8 @@ public class UnidadesTest {
     	Posicion posicionAbajo = new Posicion(5,1);
     	
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadAtras(posicionInicial);
-    	
+    	tablero.posicionarUnidad(posicionAbajo, jinete);
+
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionAbajo);
     	
     	
@@ -79,7 +80,7 @@ public class UnidadesTest {
     	Posicion posicionArriba= new Posicion(5,3);
     	
     	tablero.posicionarUnidad(posicionInicial, jinete);
-    	tablero.moverUnidadAdelante(posicionInicial);
+    	tablero.posicionarUnidad(posicionArriba, jinete);    
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionArriba);
     	
@@ -104,7 +105,7 @@ public class UnidadesTest {
     	tablero.posicionarUnidad(posicionInicialJinete, jinete);
     	tablero.posicionarUnidad(posicionAbajo, curandero);
     	
-    	tablero.moverUnidadAtras(posicionInicialJinete);
+    	tablero.posicionarUnidad(posicionAbajo, jinete);
     	
     	UnidadDeJuego resultado = tablero.obtenerUnidad(posicionInicialJinete);
     	
