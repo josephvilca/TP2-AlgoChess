@@ -27,34 +27,8 @@ public class ControladorJuego {
     
 
     public void actualizarVista() {
-    	/*Posicion posJugador = juego.getJugador().miPosicion();
 
-        for(int row = 0; row < juego.getMapa().getFilas() ; row++)
-        {
-            for(int col = 0; col < juego.getMapa().getColumnas(); col++)
-            {
-                Posicion posicion = new Posicion(row,col);
-                Material objeto = juego.getMapa().obtenerObjeto(posicion);
-                
-                String nombreImagen = "SinMaterial.png";
-                if(objeto.getClass() == Madera.class)
-                	nombreImagen = "madera.png";
-                if(objeto.getClass() == Diamante.class)
-                	nombreImagen = "diamante.png";
-                if(objeto.getClass() == Metal.class)
-                	nombreImagen = "metal.png";
-                if(objeto.getClass() == Piedra.class)
-                	nombreImagen = "piedra.png";
-                
-                if(!posJugador.equals(posicion)) juegoVista.agregarElemento(nombreImagen, col, row);
-            }
-        }
-        
-        juegoVista.agregarElemento("jugador.png", juego.getJugador().getPosicionFila(), juego.getJugador().getPosicionColumna());
-        */
     }
-
-
     public void mover(){
     	
 
@@ -81,7 +55,8 @@ public class ControladorJuego {
     
     public void actualizarNombreTurnoActual(){
     	Label label = new Label("EL TURNO ES DE : "+this.juego.getNombreJugadorTurnoActual());
-    	label.setMinSize(60.0, 60.0);
+    	//label.setMinSize(60.0, 60.0);
+    	label.setStyle("-fx-font: 24 arial");
     	this.juegoVista.setearTurnoActual(label);
     }
     

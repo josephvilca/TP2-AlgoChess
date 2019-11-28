@@ -40,6 +40,10 @@ public class JuegoVista {
         	for(int j= 0; j <= 19 ; j++){
         		Casilla casilla = new Casilla(30, j, i);
         		contenedorHorizontal.getChildren().add(casilla);
+        		casilla.setOnMouseClicked(e -> {
+                System.out.println(casilla.x);
+                System.out.println(casilla.y);
+            });
             }
         	
         	contenedorVertical.getChildren().add(contenedorHorizontal);       	
