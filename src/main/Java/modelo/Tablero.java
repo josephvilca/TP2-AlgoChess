@@ -6,13 +6,22 @@ public class Tablero {
 	protected HashMap<Posicion, UnidadDeJuego> casillas;
 	private List<UnidadDeJuego> unidadesJugadorActual; 
 	private List<UnidadDeJuego> unidadesEnemigas; 
-	
+	Movimientos mov;
 	
 	public Tablero(){
-		
+		this.mov = new Movimientos(this);
 		this.casillas = new HashMap<Posicion, UnidadDeJuego>();
 	}
 
+	public boolean unidadAliada(UnidadDeJuego unidad){
+		return this.unidadesJugadorActual.contains(unidad);
+	}
+	
+	public boolean unidadEnemiga(UnidadDeJuego unidad){
+		return this.unidadesEnemigas.contains(unidad);
+	}
+	
+	
 	public boolean posicionInvalida(Posicion unaPosicion){
 
 		boolean filtro1 = this.casillas.containsKey(unaPosicion);
@@ -21,15 +30,25 @@ public class Tablero {
 		return (filtro1 || filtro2);
 	}
 	
+	public void moverUnidad(Posicion posInicial, Posicion posFinal){
+		UnidadDeJuego unidad =  this.casillas.get(posInicial);
+		this.mov.mover(posInicial, posFinal, unidad);
+	}
+	
+	public void borrarUnidad(Posicion pos){
+		this.casillas.remove(pos);
+	}
+	
 	public void actualizarUnidadesDeJugadores(List<UnidadDeJuego> aliados, List<UnidadDeJuego> enemigos){
 		this.unidadesJugadorActual = aliados;
 		this.unidadesEnemigas = enemigos;
 	}
 	
-	public void posicionarUnidad(Posicion posicionDeUnidad, UnidadDeJuego unidad){
-		if(this.posicionInvalida(posicionDeUnidad)) return;
+	public boolean posicionarUnidad(Posicion posicionDeUnidad, UnidadDeJuego unidad){
+		if(this.posicionInvalida(posicionDeUnidad)) return false;
 		unidad.mover(posicionDeUnidad);
 		this.casillas.put(posicionDeUnidad, unidad);
+		return true;
 	}
 	
 	public UnidadDeJuego obtenerUnidad(Posicion posicion){

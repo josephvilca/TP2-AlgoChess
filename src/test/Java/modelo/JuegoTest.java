@@ -21,8 +21,11 @@ public class JuegoTest {
     	juego.terminarTurno();	 
     	
     	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
+    	
     	assertEquals(unidad.vida(), 40);
-
+    	
+    	
+    	
     }
 	
 	@Test

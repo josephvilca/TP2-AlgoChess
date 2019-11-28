@@ -4,8 +4,7 @@ public class Juego {
 	
 	Tablero tablero;
 	Tienda tienda;
-	Jugador jugador1, jugador2;
-	Jugador turnoActual;
+	Jugador jugador1, jugador2, turnoActual;
 	UnidadDeJuego unidadSeleccionada;
 	private int turno;
 	
@@ -18,7 +17,6 @@ public class Juego {
 		this.jugador2 = new Jugador(20);
 		this.tienda = new Tienda();
 		turnoActual = jugador1;
-		
 	}
 	
 	public String getNombreJugadorTurnoActual(){
@@ -78,15 +76,14 @@ public class Juego {
 	}
 	
 	
-	public void moverPiezaSeleccionada(int opcion){
-		if(this.unidadSeleccionada == null) return;
-		switch (opcion){
-			case 0:this.tablero.moverUnidadAdelante(this.unidadSeleccionada.posicion);
-			case 1:this.tablero.moverUnidadAtras(this.unidadSeleccionada.posicion);
-			case 2:this.tablero.moverUnidadDerecha(this.unidadSeleccionada.posicion);
-			case 3:this.tablero.moverUnidadIzquierda(this.unidadSeleccionada.posicion);
-		}
+
+	
+	public void moverPiezaSeleccionada(int x, int y){
+		Posicion nuevaPosicion = new Posicion(x, y);
+
+		this.tablero.moverUnidad(this.unidadSeleccionada.getPosicion(), nuevaPosicion);
 	}
+	
 	
 	
 	

@@ -55,6 +55,25 @@ public class Posicion{
 
 		return lista;
 	}
+
+	public List<UnidadDeJuego> unidadesCercanasA1(Tablero tablero){
+		List<UnidadDeJuego> lista = new ArrayList<UnidadDeJuego>();
+
+		for(int i=x-1; i <= x+1; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(i, y+1));
+			if(unidad != null) lista.add(unidad);
+		}
+		
+		for(int i=x-1; i <= x+1; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(i, y));
+			if(unidad != null) lista.add(unidad);
+		}
+		for(int i=x-1; i <= x+1; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(i, y-1));
+			if(unidad != null) lista.add(unidad);
+		}
+		return lista;
+	}
 	
 	@Override
 	public boolean equals(Object obj){
@@ -86,16 +105,30 @@ public class Posicion{
 		return new Posicion(this.x, this.y+1);
 	}
 
-
+	public Posicion getDiagonalArribaIzquierda(){
+		return new Posicion(this.x-1, this.y+1);
+	}
+	
 	public Posicion getPosicionAbajo() {
 		return new Posicion(this.x, this.y-1);
 	}
 
+	public Posicion getDiagonalAbajoIzquierda(){
+		return new Posicion(this.x-1, this.y-1);
+	}
+
+	public Posicion getDiagonalAbajoDerecha(){
+		return new Posicion(this.x+1, this.y-1);
+	}
+	
 
 	public Posicion getPosicionDerecha() {
 		return new Posicion(this.x+1, this.y);
 	}
 
+	public Posicion getDiagonalArribaDerecha(){
+		return new Posicion(this.x+1, this.y+1);
+	}
 
 	public Posicion getPosicionIzquierda() {
 		return new Posicion(this.x-1, this.y);

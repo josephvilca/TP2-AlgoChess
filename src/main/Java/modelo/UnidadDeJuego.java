@@ -47,7 +47,9 @@ public abstract class UnidadDeJuego {
 	}*/
 	
 	public abstract boolean puedoMoverme();
-	
+	public Posicion getPosicion(){
+		return this.posicion;
+	}
 	public Posicion derecha(){
 		return posicion.getPosicionDerecha();
 	}
