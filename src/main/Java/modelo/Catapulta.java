@@ -5,8 +5,7 @@ public class Catapulta extends UnidadDeJuego{
 	private int meeleDamage, rangeDamage;
 	private Ataque ataque;
 	
-	public Catapulta(Jugador jugador){
-		super(jugador);
+	public Catapulta(){
 		this.costo = 5;
 		this.vida = 50;
 		this.meeleDamage = 0;

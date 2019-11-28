@@ -9,7 +9,7 @@ public class UnidadesTest {
     @Test
     public void jineteSeMueveALaDerecha(){
 
-    	UnidadDeJuego jinete = new Jinete(null);
+    	UnidadDeJuego jinete = new Jinete();
     	
     	Tablero tablero = new Tablero();
     	
@@ -30,7 +30,7 @@ public class UnidadesTest {
     @Test
     public void jineteSeMueveALaIzquierda(){
  
-    	UnidadDeJuego jinete = new Jinete(null);
+    	UnidadDeJuego jinete = new Jinete();
     	
     	Tablero tablero = new Tablero();
     	
@@ -50,7 +50,7 @@ public class UnidadesTest {
     @Test
     public void jineteSeMueveAbajo(){
  
-    	UnidadDeJuego jinete = new Jinete(null);
+    	UnidadDeJuego jinete = new Jinete();
     	
     	Tablero tablero = new Tablero();
     	
@@ -71,7 +71,7 @@ public class UnidadesTest {
     @Test
     public void jineteSeMueveArriba(){
  
-    	UnidadDeJuego jinete = new Jinete(null);
+    	UnidadDeJuego jinete = new Jinete();
     	
     	Tablero tablero = new Tablero();
     	
@@ -92,8 +92,8 @@ public class UnidadesTest {
     @Test
     public void jineteSeMueveAUnaPosicionOcupadaYSeQuedaEnelMismoLugar(){
  
-    	UnidadDeJuego jinete = new Jinete(null);
-    	UnidadDeJuego curandero= new Curandero(null);
+    	UnidadDeJuego jinete = new Jinete();
+    	UnidadDeJuego curandero= new Curandero();
     	
     	
     	Tablero tablero = new Tablero();

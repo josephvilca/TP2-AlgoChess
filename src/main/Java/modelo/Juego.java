@@ -69,10 +69,17 @@ public class Juego {
 	public void atacar(int x, int y){
 		Posicion pos = new Posicion(x, y);
 		this.tablero.atacar(this.unidadSeleccionada, pos);
+		this.terminarTurno();
+	}
+	
+	public void curar(int x, int y){
+		Posicion pos = new Posicion(x, y);
+		this.tablero.curar(this.unidadSeleccionada, pos);
 		//UnidadDeJuego victima = this.tablero.obtenerUnidad(pos);
 		//this.unidadSeleccionada.atacar(victima);
 		this.terminarTurno();
 	}
+	
 	
 	public void moverPiezaSeleccionada(int opcion){
 		if(this.unidadSeleccionada == null) return;
@@ -83,6 +90,7 @@ public class Juego {
 			case 3:this.tablero.moverUnidadIzquierda(this.unidadSeleccionada.posicion);
 		}
 	}
+	
 	
 	
 	public void comprarUnidad(int indice, int x, int y){

@@ -107,6 +107,15 @@ public class Posicion{
 		return (float)Math.sqrt(xPart+yPart) ;
 	}
 
+	public boolean aDistancia1(Posicion pos){
+		return (distancia(pos) <= Math.sqrt(2));
+	}
+
+	public boolean aDistancia2(Posicion pos){
+		return (distancia(pos) <= Math.sqrt(8));
+	}
+
+	
 	public int distanciaX(Posicion pos){
 		int res = pos.x - this.x;
 		return Math.abs(res);

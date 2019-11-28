@@ -29,6 +29,7 @@ public class Tablero {
 	
 	public void posicionarUnidad(Posicion posicionDeUnidad, UnidadDeJuego unidad){
 		if(this.posicionInvalida(posicionDeUnidad)) return;
+		unidad.mover(posicionDeUnidad);
 		this.casillas.put(posicionDeUnidad, unidad);
 	}
 	
@@ -51,14 +52,13 @@ public class Tablero {
 		List<UnidadDeJuego> unidadesCerca = unidad.posicion.unidadesCercanas(this);
 		
 		for(UnidadDeJuego u : unidadesCerca){
-			if(u.posicion.distancia(desde) <= Math.sqrt(2) && this.unidadesJugadorActual.contains(u)){
+			if(u.posicion.aDistancia1(desde) && this.unidadesJugadorActual.contains(u)){
 				if(!this.casillas.containsKey(hasta)){
-					this.casillas.remove(desde);
+					this.casillas.remove(u);
 					this.casillas.put(hasta, unidad);
 					unidad.mover(hasta);
 				
-				}
-				
+				}				
 			}
 				
 		}
@@ -120,8 +120,19 @@ public class Tablero {
 		
 		if(enemigosCerca && !ataqueMediano) atacante.setearAtaque(new AtaqueCercano());
 		atacante.atacar(victima);
+		if(victima.estaDestruido())
+			this.unidadesEnemigas.remove(victima);
 		
 	}
+
+	public void atacar(SoldadoInfanteria atacante, Posicion posVictima){
+		System.out.println("ACAAA");
+		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
+
+		atacante.atacar(victima);
+		
+	}
+	
 	public void atacar(UnidadDeJuego atacante, Posicion posVictima){
 		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
@@ -129,8 +140,13 @@ public class Tablero {
 		atacante.atacar(victima);
 		
 	}
-	//public atacar()
-	
-	
-	
+
+	public void curar(UnidadDeJuego atacante, Posicion posAliado){
+		
+		UnidadDeJuego aliado = this.obtenerUnidad(posAliado);
+		atacante.curar(aliado);
+
+		
+	}
+		
 }

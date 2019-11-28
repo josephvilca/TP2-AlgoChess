@@ -5,8 +5,7 @@ public class Jinete extends UnidadDeJuego{
 	private int meeleDamage, rangeDamage; 
 	public Ataque ataque;
 	
-	public Jinete(Jugador jugador){
-		super(jugador);
+	public Jinete(){
 		this.costo = 3;
 		this.vida = 100;
 		this.meeleDamage = 5;

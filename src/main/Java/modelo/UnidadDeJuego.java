@@ -6,9 +6,7 @@ public abstract class UnidadDeJuego {
 	public Posicion posicion;
 	public Jugador dueno;
 	
-	public UnidadDeJuego(Jugador jugador){
-		this.dueno = jugador;
-	}
+
 	
 	public void recibirDano(int damage){
 		this.vida -= damage;
@@ -17,8 +15,12 @@ public abstract class UnidadDeJuego {
 		}
 	}
 	
-	public boolean perteneceA(Jugador jugador){
-		return dueno == jugador;
+	public boolean estaDestruido(){
+		return this.vida <= 0;
+	}
+	
+	public void curar(UnidadDeJuego unidad){
+		System.out.println("implementar");
 	}
 	
 	public abstract void atacar(UnidadDeJuego victima);
