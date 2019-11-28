@@ -44,7 +44,9 @@ public class Juego {
 	
 	public void posicionarUnidad(int x, int y){
 		Posicion posicionSeleccionada = new Posicion(x,y);
-		this.tablero.posicionarUnidad(posicionSeleccionada, unidadSeleccionada);
+		if(this.tablero.unidadAliada(this.unidadSeleccionada))
+			this.tablero.posicionarUnidad(posicionSeleccionada, unidadSeleccionada);
+		
 	}
 
 	public void terminarTurno(){

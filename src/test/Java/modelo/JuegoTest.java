@@ -178,6 +178,30 @@ public class JuegoTest {
     	assertEquals(unidad.vida(), 100);
 
     }
+
+	@Test
+    public void noSePuedeColocar(){
+ /*
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(3, 9, 6);
+
+    	juego.terminarTurno();
+    	
+    	juego.comprarUnidad(0, 9, 11);
+    	juego.terminarTurno();
+    	
+    	juego.seleccionarDelTablero(9, 6);
+    	juego.atacar(9, 11);
+    	juego.terminarTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 11);
+    	assertEquals(unidad.vida(), 100);
+*/
+		assertTrue(true);
+    }
 		
+	
+	
 	
 }

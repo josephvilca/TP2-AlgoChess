@@ -21,8 +21,6 @@ public class AlgoChess extends Application {
     public static double width;
     public static double heigth;
     private Juego juego;
-    /*private Group root;
-    private static PlayerView player;*/
 
 
     public static void main(String[] args) {
@@ -49,11 +47,9 @@ public class AlgoChess extends Application {
 
             // Botones
             Boton btnJugar = new Boton("Jugar");
-            Boton btnCreditos = new Boton("Creditos");
             Boton btnSalir = new Boton("Salir del Juego");
 
             btnJugar.setMaxWidth(Double.MAX_VALUE);
-            btnCreditos.setMaxWidth(Double.MAX_VALUE);
             btnSalir.setMaxWidth(Double.MAX_VALUE);
    
             // Agrego botones a VBox
@@ -61,15 +57,10 @@ public class AlgoChess extends Application {
             vbButtons.setAlignment(Pos.CENTER);
             vbButtons.setSpacing(10);
             vbButtons.setPadding(new Insets(0, 20, 10, 20));
-            vbButtons.getChildren().addAll(btnJugar, btnCreditos, btnSalir);
-
-            // Copyright
-            Label copyright = new Label("TP2 Algoritmos 3 FIUBA. ");
-            copyright.setAlignment(Pos.BOTTOM_CENTER);
+            vbButtons.getChildren().addAll(btnJugar, btnSalir);
 
             // Agrego lo anterior al BorderPane
             border.setCenter(vbButtons);
-            border.setBottom(copyright);
             border.setStyle("-fx-background-image: url('background.jpg')");
             
             Scene scene = new Scene(border, 1200, 900);
@@ -86,9 +77,7 @@ public class AlgoChess extends Application {
             btnJugar.setOnAction(e -> {
                 controladorDeEscena.activate("preJuego");
             });
-            btnCreditos.setOnAction(e -> {
-                controladorDeEscena.activate("creditos");
-            });
+
             btnSalir.setOnAction(e -> {
                 Platform.exit();
             });

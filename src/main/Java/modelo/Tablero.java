@@ -58,7 +58,6 @@ public class Tablero {
 	
 	public void atacar(Jinete atacante, Posicion posVictima){
 		
-		System.out.println("CABALLO A PUNTO DE ATACAR");
 		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
 		List<UnidadDeJuego> unidadesCerca = atacante.posicion.unidadesCercanas(this);
