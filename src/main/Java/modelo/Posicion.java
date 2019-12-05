@@ -88,11 +88,11 @@ public class Posicion{
 
 
 	public Posicion getPosicionArriba() {
-		return new Posicion(this.x, this.y+1);
+		return new Posicion(this.x, this.y-1);
 	}
 
 	public Posicion getDiagonalArribaIzquierda(){
-		return new Posicion(this.x-1, this.y+1);
+		return new Posicion(this.x-1, this.y-1);
 	}
 	
 	public Posicion getPosicionAbajo() {
@@ -113,7 +113,7 @@ public class Posicion{
 	}
 
 	public Posicion getDiagonalArribaDerecha(){
-		return new Posicion(this.x-1, this.y-1);
+		return new Posicion(this.x+1, this.y-1);
 	}
 
 	public Posicion getPosicionIzquierda() {

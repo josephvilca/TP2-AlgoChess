@@ -13,6 +13,9 @@ public class UnidadSeleccionada implements EstadoDeTurno{
 	public void seleccionarDelTablero(int x, int y) {
 		Posicion posicionSeleccionada = new Posicion(x,y);
 		this.juego.unidadSeleccionada = this.juego.tablero.obtenerUnidad(posicionSeleccionada);
+		if(this.juego.unidadSeleccionada == null){
+			this.juego.cambiarEstado(juego.enTurno);
+		}
 	}
 
 	@Override
@@ -39,6 +42,7 @@ public class UnidadSeleccionada implements EstadoDeTurno{
 
 		if(juego.tablero.moverUnidad(this.juego.unidadSeleccionada.getPosicion(), nuevaPosicion))
 			this.juego.cambiarEstado(this.juego.turnoTerminado);
+		else juego.cambiarEstado(juego.enTurno);
 	}
 
 	@Override
