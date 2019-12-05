@@ -15,4 +15,15 @@ public class AtaqueLejano extends Ataque {
 			atacante.atacarRange(victima);
 		}	
 	}
+	
+	public void atacarBonus(UnidadDeJuego atacante, UnidadDeJuego victima, int bonus){
+		
+		int x = atacante.posicion.distanciaX(victima.posicion);
+		int y = atacante.posicion.distanciaY(victima.posicion);
+		if(x >= this.rangoMin || y >= this.rangoMin){
+			int dmg = atacante.rangeDamage + (atacante.rangeDamage * bonus/ 100) ; 
+			victima.recibirDano(dmg);
+			//atacante.atacarRange(victima);
+		}	
+	}
 }

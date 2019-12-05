@@ -20,4 +20,16 @@ public class AtaqueMediano extends Ataque{
 		}	
 	}
 
+	public void atacarBonus(UnidadDeJuego atacante, UnidadDeJuego victima, int bonus){
+		
+		int x = atacante.posicion.distanciaX(victima.posicion);
+		int y = atacante.posicion.distanciaY(victima.posicion);
+		boolean filtro1 = (x >= this.rangoMin || y >= this.rangoMin );  
+		boolean filtro2 = (x <= this.rangoMax && y <= this.rangoMax);
+				
+		if(filtro1 && filtro2){
+			int dmg = atacante.rangeDamage + (atacante.rangeDamage*bonus/100);
+			victima.recibirDano(dmg);
+		}
+	}
 }

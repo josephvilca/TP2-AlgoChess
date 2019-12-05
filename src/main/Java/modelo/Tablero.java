@@ -1,11 +1,13 @@
 package modelo;
 import java.util.*;
 
+import com.sun.javafx.collections.MapAdapterChange;
+
 public class Tablero {
 
 	protected HashMap<Posicion, UnidadDeJuego> casillas;
-	private List<UnidadDeJuego> unidadesJugadorActual; 
-	private List<UnidadDeJuego> unidadesEnemigas; 
+	protected UnidadesDeJugador unidadesJugadorActual; 
+	protected UnidadesDeJugador unidadesEnemigas; 
 	Movimientos mov;
 	
 	public Tablero(){
@@ -14,11 +16,11 @@ public class Tablero {
 	}
 
 	public boolean unidadAliada(UnidadDeJuego unidad){
-		return this.unidadesJugadorActual.contains(unidad);
+		return this.unidadesJugadorActual.pertenece(unidad);
 	}
 	
 	public boolean unidadEnemiga(UnidadDeJuego unidad){
-		return this.unidadesEnemigas.contains(unidad);
+		return this.unidadesEnemigas.pertenece(unidad);
 	}
 	
 	
@@ -39,13 +41,13 @@ public class Tablero {
 		this.casillas.remove(pos);
 	}
 	
-	public void actualizarUnidadesDeJugadores(List<UnidadDeJuego> aliados, List<UnidadDeJuego> enemigos){
+	public void actualizarUnidadesDeJugadores(UnidadesDeJugador aliados, UnidadesDeJugador enemigos){
 		this.unidadesJugadorActual = aliados;
 		this.unidadesEnemigas = enemigos;
 	}
 	
 	public boolean posicionarUnidad(Posicion posicionDeUnidad, UnidadDeJuego unidad){
-		if(this.posicionInvalida(posicionDeUnidad)) return false;
+		if(this.posicionInvalida(posicionDeUnidad) || !unidadesJugadorActual.estoyEnMisector(posicionDeUnidad)) return false;
 		unidad.mover(posicionDeUnidad);
 		this.casillas.put(posicionDeUnidad, unidad);
 		return true;
@@ -66,9 +68,9 @@ public class Tablero {
 		boolean ataqueMediano= false;
 		boolean enemigosCerca = false;
 		for(UnidadDeJuego u : unidadesCerca){
-			if(u instanceof SoldadoInfanteria && this.unidadesJugadorActual.contains(u)) ataqueMediano= true;
+			if(u instanceof SoldadoInfanteria && this.unidadesJugadorActual.pertenece(u)) ataqueMediano= true;
 			;
-			if(this.unidadesEnemigas.contains(u)) enemigosCerca= true;
+			if(this.unidadesEnemigas.pertenece(u)) enemigosCerca= true;
 			
 		}
 		if(ataqueMediano || !enemigosCerca) {
@@ -76,15 +78,12 @@ public class Tablero {
 			atacante.atacar(victima);
 			return;
 		}
-		
-		for(UnidadDeJuego u : unidadesCerca){
-			if(this.unidadesJugadorActual.contains(u)) ataqueMediano= true;
-		}
-		
-		if(enemigosCerca && !ataqueMediano) atacante.setearAtaque(new AtaqueCercano());
+
+
+		if(enemigosCerca ) atacante.setearAtaque(new AtaqueCercano());
 		atacante.atacar(victima);
 		if(victima.estaDestruido())
-			this.unidadesEnemigas.remove(victima);
+			this.unidadesEnemigas.perderPieza(victima);
 		
 	}
 
@@ -101,16 +100,17 @@ public class Tablero {
 		
 		//UnidadDeJuego objetivo = this.obtenerUnidad(posObjetivo);
 		atacante.accionar(this, posObjetivo);
-		
-		
+				
 	}
 
 	public void curar(UnidadDeJuego atacante, Posicion posAliado){
 		
 		UnidadDeJuego aliado = this.obtenerUnidad(posAliado);
 		atacante.curar(aliado);
-
 		
 	}
-		
+
+	public HashMap<Posicion, UnidadDeJuego> casillas(){
+		return casillas;
+	}
 }

@@ -8,6 +8,7 @@ public class JugadorTest {
     public void jugadorNoPuedeTomarMasEntidadesDeLosQuePuedeCommprar(){
  
     	Jugador jugador = new Jugador(20);
+    	jugador.setearTipoDeUnidades(new UJugador1());
     	Tienda tienda = new Tienda ();
     	
     	tienda.venderUnidad(jugador, 3);
@@ -26,6 +27,7 @@ public class JugadorTest {
     public void jugadorSeQuedaSinEntidadesPierde(){
  
     	Jugador jugador = new Jugador(20);
+    	jugador.setearTipoDeUnidades(new UJugador1());
     	Tienda tienda = new Tienda ();
 
     	

@@ -3,6 +3,8 @@ package modelo;
 public abstract class UnidadDeJuego {
 
 	protected int vida, costo;
+	protected int meeleDamage, rangeDamage; 
+
 	public Posicion posicion;
 	public Jugador dueno;
 	
@@ -24,6 +26,7 @@ public abstract class UnidadDeJuego {
 	}
 	
 	public abstract void atacar(UnidadDeJuego victima);
+
 	public abstract void accionar(Tablero tablero, Posicion pos);
 	
 	public abstract void atacarMeele(UnidadDeJuego victima);

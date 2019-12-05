@@ -10,17 +10,17 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(0, 9, 9);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(0, 10, 10);//j1
+    	juego.concluirTurno();//j1
     	
-    	juego.comprarUnidad(3, 10, 10);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(3, 9, 9);//j2
+    	juego.concluirTurno();
     	
-    	juego.seleccionarDelTablero(9, 9);
-    	juego.atacar(10, 10);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(10, 10);
+    	juego.accionar(9, 9);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 9);
     	
     	assertEquals(unidad.vida(), 40);
     	
@@ -33,17 +33,17 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(1, 9, 9);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(1, 9, 10);//jugador 1 compra jinete
+    	juego.concluirTurno();
     	
-    	juego.comprarUnidad(3, 9, 10);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(3, 9, 9);//jugador 2 compra catapulta
+    	juego.concluirTurno();
     	
-    	juego.seleccionarDelTablero(9, 9);
-    	juego.atacar(9, 10);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(9, 10);//jugadro 1
+    	juego.accionar(9, 9);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 10);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 9);
     	assertEquals(unidad.vida(), 45);
 
     }
@@ -53,18 +53,18 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(1, 9, 9);
-    	juego.comprarUnidad(0, 7, 9);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(1, 9, 11);//j1 
+    	juego.comprarUnidad(0, 10, 11);//j1
+    	juego.concluirTurno();//j1
     	
-    	juego.comprarUnidad(3, 9, 10);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(3, 9, 9);//j2
+    	juego.concluirTurno();//j2
     	
-    	juego.seleccionarDelTablero(9, 9);
-    	juego.atacar(9, 10);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(9, 11);
+    	juego.accionar(9, 9);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 10);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 9);
     	assertEquals(unidad.vida(), 50);
 
     }
@@ -73,19 +73,21 @@ public class JuegoTest {
     public void jineteConSoldadoDeInfanteriaCercaAtacaCatapultaConAtaqueMediano(){
  
     	Juego juego = new Juego();
+    	juego.setNombreJugador1("jugador 1");
+    	juego.setNombreJugador2("jugador 2");
     	
-    	juego.comprarUnidad(1, 9, 9);
-    	juego.comprarUnidad(0, 7, 9);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(1, 9, 12); // jugador1
+    	juego.comprarUnidad(0, 11, 12);//jugador 1
+    	juego.concluirTurno();;// j1
     	
-    	juego.comprarUnidad(3, 9, 12);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(3, 9, 9); // j2
+    	juego.concluirTurno();//j2
     	
-    	juego.seleccionarDelTablero(9, 9);
-    	juego.atacar(9, 12);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(9, 12);
+    	juego.accionar(9, 9);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 12);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 9);
     	assertEquals(unidad.vida(), 35);
 
     }
@@ -98,25 +100,34 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(2, 8, 8);
+    	juego.setNombreJugador1("jugador 1");
+    	juego.setNombreJugador2("jugador 2");
     	
-    	juego.comprarUnidad(0, 9, 9);
+    	juego.comprarUnidad(2, 10, 10);// jugador1 compra curandero
     	
-    	juego.terminarTurno();
+    	juego.comprarUnidad(0, 11, 10);// jugador1
     	
-    	juego.comprarUnidad(0, 10, 10);
-    	juego.seleccionarDelTablero(10, 10);
-    	juego.atacar(9, 9);
-    	juego.terminarTurno();
+    	juego.concluirTurno(); //j1 
     	
-    	juego.seleccionarDelTablero(10, 10);    	
-    	juego.atacar(9, 9);
-    	//se termina el turno
-    	juego.seleccionarDelTablero(8, 8);
-    	juego.curar(9, 9);
-    	juego.terminarTurno();	 
+    	juego.comprarUnidad(0, 11, 9);// jugador2 
+    	juego.concluirTurno();//j2
+    	//jugador 1
+    	juego.concluirTurno();
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 9);
+    	juego.seleccionarDelTablero(11, 9);// jugador 2
+    	juego.accionar(11, 10); // jugador 2
+    	juego.concluirTurno(); //jugador 2
+    	
+    	juego.concluirTurno(); //jugador1
+    	juego.seleccionarDelTablero(11, 9); //jugador 2    	
+    	juego.accionar(11, 10); //jugador 2
+    	juego.concluirTurno(); //jugador 2
+
+    	juego.seleccionarDelTablero(10, 10); // jugaador 1selecciona curandero  
+    	juego.accionar(11, 10); // jugador 1 cura aliado
+    	juego.concluirTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(11, 10);
     	assertEquals(unidad.vida(), 95);
 
     }
@@ -126,11 +137,9 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
 
-    	juego.comprarUnidad(0, 9, 9);
-    	juego.comprarUnidad(3, 7, 4);
-    	juego.comprarUnidad(3, 7, 3);
-
-    	juego.seleccionarDelTablero(9, 9);
+    	juego.comprarUnidad(0, 5, 17);
+    	juego.comprarUnidad(3, 2, 18);
+    	juego.comprarUnidad(3, 3, 18);
 
     	//UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(10, 10);
     	assertEquals(juego.turnoActual.numeroDePiezas(), 3);
@@ -142,18 +151,17 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(3, 9, 3);
-
-    	juego.terminarTurno();
+    	juego.comprarUnidad(3, 9, 12);//j1 
+    	juego.concluirTurno();// j1
     	
-    	juego.comprarUnidad(0, 9, 12);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(0, 9, 3);
+    	juego.concluirTurno();
     	
-    	juego.seleccionarDelTablero(9, 3);
-    	juego.atacar(9, 12);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(9, 12);
+    	juego.accionar(9, 3);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 12);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 3);
     	assertEquals(unidad.vida(), 80);
 
     }
@@ -163,37 +171,37 @@ public class JuegoTest {
  
     	Juego juego = new Juego();
     	
-    	juego.comprarUnidad(3, 9, 6);
+    	juego.comprarUnidad(3, 9, 11);
 
-    	juego.terminarTurno();
+    	juego.concluirTurno();
     	
-    	juego.comprarUnidad(0, 9, 11);
-    	juego.terminarTurno();
+    	juego.comprarUnidad(0, 9, 6);
+    	juego.concluirTurno();
     	
-    	juego.seleccionarDelTablero(9, 6);
-    	juego.atacar(9, 11);
-    	juego.terminarTurno();	 
+    	juego.seleccionarDelTablero(9, 11);
+    	juego.accionar(9, 6);
+    	juego.concluirTurno();	 
     	
-    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 11);
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 6);
     	assertEquals(unidad.vida(), 100);
 
     }
 
 	@Test
-    public void noSePuedeColocar(){
+    public void noSePuedeColocar(){	
  /*
     	Juego juego = new Juego();
     	
     	juego.comprarUnidad(3, 9, 6);
 
-    	juego.terminarTurno();
+    	juego.concluirTurno();
     	
     	juego.comprarUnidad(0, 9, 11);
-    	juego.terminarTurno();
+    	juego.concluirTurno();
     	
     	juego.seleccionarDelTablero(9, 6);
-    	juego.atacar(9, 11);
-    	juego.terminarTurno();	 
+    	juego.accionar(9, 11);
+    	juego.concluirTurno();	 
     	
     	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(9, 11);
     	assertEquals(unidad.vida(), 100);

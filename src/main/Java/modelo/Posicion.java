@@ -18,41 +18,27 @@ public class Posicion{
 	public List<UnidadDeJuego> unidadesCercanas(Tablero tablero){
 		List<UnidadDeJuego> lista = new ArrayList<UnidadDeJuego>();
 
-		UnidadDeJuego unidad = tablero.obtenerUnidad(this.getPosicionAbajo());
-		if(unidad != null)
-			lista.add(unidad);
-		unidad = tablero.obtenerUnidad(this.getPosicionArriba());
-		
-		if(unidad != null)
-			lista.add(unidad);
-		
-		unidad = tablero.obtenerUnidad(this.getPosicionDerecha());
-		
-		if(unidad != null)
-			lista.add(unidad);
-
-		unidad = tablero.obtenerUnidad(this.getPosicionIzquierda());
-		
-		if(unidad != null)
-			lista.add(unidad);
+		lista = unidadesCercanasA1(tablero);
 		
 		//distancia 2
-		unidad = tablero.obtenerUnidad(new Posicion(x+2, y));
-		if(unidad != null)
-			lista.add(unidad);
-
-		unidad = tablero.obtenerUnidad(new Posicion(x-2, y));
-		if(unidad != null)
-			lista.add(unidad);
-
-		unidad = tablero.obtenerUnidad(new Posicion(x, y-2));
-		if(unidad != null)
-			lista.add(unidad);
-
-		unidad = tablero.obtenerUnidad(new Posicion(x-2, y+2));
-		if(unidad != null)
-			lista.add(unidad);
-
+		
+		for(int i=x-2; i <= x+2; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(i, y-2));
+			if(unidad != null) lista.add(unidad);
+		}
+		
+		for(int i=y-1; i <= y+2; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(x-2, i));
+			if(unidad != null) lista.add(unidad);
+		}
+		for(int i=x-1; i <= x+2; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(i, y+2));
+			if(unidad != null) lista.add(unidad);
+		}
+		for(int i=y-1; i <= y+1; i++){
+			UnidadDeJuego unidad = tablero.obtenerUnidad(new Posicion(x+2, i));
+			if(unidad != null) lista.add(unidad);
+		}
 		return lista;
 	}
 
@@ -110,15 +96,15 @@ public class Posicion{
 	}
 	
 	public Posicion getPosicionAbajo() {
-		return new Posicion(this.x, this.y-1);
+		return new Posicion(this.x, this.y+1);
 	}
 
 	public Posicion getDiagonalAbajoIzquierda(){
-		return new Posicion(this.x-1, this.y-1);
+		return new Posicion(this.x-1, this.y+1);
 	}
 
 	public Posicion getDiagonalAbajoDerecha(){
-		return new Posicion(this.x+1, this.y-1);
+		return new Posicion(this.x+1, this.y+1);
 	}
 	
 
@@ -127,7 +113,7 @@ public class Posicion{
 	}
 
 	public Posicion getDiagonalArribaDerecha(){
-		return new Posicion(this.x+1, this.y+1);
+		return new Posicion(this.x-1, this.y-1);
 	}
 
 	public Posicion getPosicionIzquierda() {

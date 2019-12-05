@@ -7,32 +7,35 @@ public class Jugador {
 	int monedas;
 	String nombre;
 	protected HashMap<Posicion, UnidadDeJuego> casillas;
-	public List<UnidadDeJuego> unidades;
+	public UnidadesDeJugador unidadesJugador;
 	
 	public Jugador(int cantidadMonedas) {
-		this.monedas = cantidadMonedas;
-		this.unidades = new ArrayList<UnidadDeJuego>();
+		this.monedas = cantidadMonedas;		
+		this.unidadesJugador = null;
 	}
 
+	public void setearTipoDeUnidades(UnidadesDeJugador tipo){
+		this.unidadesJugador = tipo;
+	}
 	public boolean comprar(UnidadDeJuego unidad){
 		if(this.monedas < unidad.costo()) return false;
 		
 		this.monedas -= unidad.costo();
-		this.unidades.add(unidad);
+		this.unidadesJugador.agregar(unidad);
 		
 		return true;
 	}
 	
 	public int numeroDePiezas(){
-		return this.unidades.size();
+		return unidadesJugador.tam();
 	}
 	
 	public UnidadDeJuego obtenerUnidadReciente(){
-		return this.unidades.get(this.unidades.size()-1);
+		return unidadesJugador.obtenerUnidadReciente();
 	}
 	
 	public void perderPieza(UnidadDeJuego pieza){
-		this.unidades.remove(pieza);
+		unidadesJugador.perderPieza(pieza);
 	}
 	
 	public void setNombre(String nombre){
@@ -46,5 +49,13 @@ public class Jugador {
 	
 	public boolean derrotado(){
 		return numeroDePiezas() == 0;
+	}
+	
+	public UnidadesDeJugador unidades(){
+		return unidadesJugador;
+	}
+	
+	public int monedas(){
+		return monedas;
 	}
 }

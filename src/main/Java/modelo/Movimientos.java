@@ -24,6 +24,7 @@ public class Movimientos {
 		}
 	}
 	
+	
 	private void moverComoBatallon(UnidadDeJuego unidad, Posicion pos1, Posicion pos2){
 		int cont = 0, primeros = 2;
 

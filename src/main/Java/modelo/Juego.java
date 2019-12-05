@@ -1,11 +1,17 @@
 package modelo;
 
+import java.util.HashMap;
+
 public class Juego {
 	
-	Tablero tablero;
+	public Tablero tablero;
 	Tienda tienda;
 	Jugador jugador1, jugador2, turnoActual;
 	UnidadDeJuego unidadSeleccionada;
+	EstadoDeTurno enTurno, estadoSeleccionado, faseInicial, faseInicial2, turnoTerminado;
+	
+	EstadoDeTurno estadoActual;
+	
 	private int turno;
 	
 	
@@ -14,9 +20,27 @@ public class Juego {
 		this.turno = 1;
 		this.tablero = new Tablero();
 		this.jugador1 = new Jugador(20);
+		jugador1.setearTipoDeUnidades(new UJugador1());
+		
 		this.jugador2 = new Jugador(20);
+		jugador2.setearTipoDeUnidades(new UJugador2());
 		this.tienda = new Tienda();
 		turnoActual = jugador1;
+		
+		enTurno = new EnTurno(this);
+		estadoSeleccionado = new UnidadSeleccionada(this);
+		turnoTerminado = new TurnoTerminado(this);
+		faseInicial = new FaseInicial(this);
+		faseInicial2 = new FaseInicial2(this);
+		estadoActual = faseInicial;
+		
+		tablero.actualizarUnidadesDeJugadores(jugador1.unidades(), jugador2.unidades());
+		
+	}
+
+	
+	public boolean faseInicalTerminada(){
+		return turno == 2;
 	}
 	
 	public String getNombreJugadorTurnoActual(){
@@ -32,8 +56,7 @@ public class Juego {
 	}
 
 	public void seleccionarDelTablero(int x, int y) {
-		Posicion posicionSeleccionada = new Posicion(x,y);
-		this.unidadSeleccionada = this.tablero.obtenerUnidad(posicionSeleccionada);
+		estadoActual.seleccionarDelTablero(x, y);
 	}
 	
 	public UnidadDeJuego obtenerUnidadDelTablero(int x, int y){
@@ -53,47 +76,51 @@ public class Juego {
 		this.turno++;
 		if(this.turno % 2 == 0 ) {
 			this.turnoActual = this.jugador2;
-			this.tablero.actualizarUnidadesDeJugadores(this.jugador2.unidades, this.jugador1.unidades);
+			this.tablero.actualizarUnidadesDeJugadores(this.jugador2.unidades(), this.jugador1.unidades());
 		}else{
 			this.turnoActual = this.jugador1;
-			this.tablero.actualizarUnidadesDeJugadores(this.jugador1.unidades, this.jugador2.unidades);
+			this.tablero.actualizarUnidadesDeJugadores(this.jugador1.unidades(), this.jugador2.unidades());
 			
-		}
-		
-		
+		}	
 	}
 	
-	public void atacar(int x, int y){
-		Posicion pos = new Posicion(x, y);
-		//this.tablero.atacar(this.unidadSeleccionada, pos);
-		this.tablero.accionar(this.unidadSeleccionada, pos);
-		this.terminarTurno();
+	public void concluirTurno(){
+		estadoActual.terminarTurno();
 	}
 	
-	public void curar(int x, int y){
-		Posicion pos = new Posicion(x, y);
-		//this.tablero.curar(this.unidadSeleccionada, pos);
-		this.tablero.accionar(this.unidadSeleccionada, pos);
-		this.terminarTurno();
+	public void accionar(int x, int y){
+		estadoActual.accionar(x, y);
+
 	}
-	
 	
 
-	
 	public void moverPiezaSeleccionada(int x, int y){
-		Posicion nuevaPosicion = new Posicion(x, y);
-
-		this.tablero.moverUnidad(this.unidadSeleccionada.getPosicion(), nuevaPosicion);
+		estadoActual.moverPiezaSeleccionada(x, y);
 	}
-	
-	
 	
 	
 	public void comprarUnidad(int indice, int x, int y){
-		Posicion posicionNueva = new Posicion(x,y);
-
-		this.tienda.venderUnidad(this.turnoActual, indice);
-		this.tablero.posicionarUnidad(posicionNueva, this.turnoActual.obtenerUnidadReciente());
+		estadoActual.comprarUnidad(indice, x, y);
+	}
+	
+	public void cambiarEstado(EstadoDeTurno estado){
 		
+		estadoActual = estado;
+	}
+	
+	public void aumentarNumeroDeTurno(){
+		this.turno++;
+	}
+	
+	public boolean esTurnoDeJugador2(){
+		return this.turno % 2 == 0;
+	}
+	
+	public HashMap<Posicion, UnidadDeJuego> casillas(){
+		return tablero.casillas();
+	}
+	
+	public int monedasDelJugador(){
+		return turnoActual.monedas();
 	}
 }

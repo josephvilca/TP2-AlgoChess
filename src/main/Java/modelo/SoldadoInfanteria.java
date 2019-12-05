@@ -2,7 +2,6 @@ package modelo;
 
 public class SoldadoInfanteria extends UnidadDeJuego {
 
-	private int meeleDamage, rangeDamage; 
 	private Ataque ataque;
 	
 	public SoldadoInfanteria(){
@@ -26,9 +25,11 @@ public class SoldadoInfanteria extends UnidadDeJuego {
 		victima.recibirDano(this.meeleDamage);
 	}
 
+
 	public void atacarRange(UnidadDeJuego victima){
 		victima.recibirDano(this.rangeDamage);
 	}
+	
 
 	public void atacar(UnidadDeJuego victima){
 		this.ataque.atacar(this, victima);
