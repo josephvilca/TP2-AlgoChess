@@ -53,4 +53,12 @@ public class Tienda extends VBox{
 	public void reiniciarInidice(){
 		indiceElegido = -1;
 	}
+	
+	public void limpiarSeleccion(){
+		soldado.setSelected(false);
+		jinete.setSelected(false);
+		curandero.setSelected(false);
+		catapulta.setSelected(false);
+		
+	}
 }

@@ -15,7 +15,6 @@ public class JugadorTest {
     	tienda.venderUnidad(jugador, 3);
     	tienda.venderUnidad(jugador, 3);
     	tienda.venderUnidad(jugador, 3);
-    	tienda.venderUnidad(jugador, 2);
     	
     	
     	

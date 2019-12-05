@@ -10,12 +10,12 @@ public class TurnoTerminado implements EstadoDeTurno{
 	
 	@Override
 	public void seleccionarDelTablero(int x, int y) {
-		System.out.println("No se pueden realizar mas acciones por este turno");
+		System.out.println("El turno se ha terminado, no se puede seleccionar ");
 	}
 
 	@Override
 	public void posicionarUnidad(int x, int y) {
-		System.out.println("No se pueden realizar mas acciones por este turno");
+		System.out.println("El turno se ha terminado, no se puede posicionar");
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class TurnoTerminado implements EstadoDeTurno{
 
 	@Override
 	public void moverPiezaSeleccionada(int x, int y) {
-		System.out.println("No se pueden realizar mas acciones por este turno");
+		System.out.println("El turno se hah terminado, no se pueden mover mas objetos");
 	}
 
 	@Override

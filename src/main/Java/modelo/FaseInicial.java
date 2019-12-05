@@ -45,8 +45,9 @@ public class FaseInicial implements EstadoDeTurno{
 		Posicion posicionNueva = new Posicion(x,y);
 		
 		if(juego.tienda.venderUnidad(juego.turnoActual, indice))
-			juego.tablero.posicionarUnidad(posicionNueva, juego.turnoActual.obtenerUnidadReciente());
-		
+			if(juego.tablero.posicionarUnidad(posicionNueva, juego.turnoActual.obtenerUnidadReciente()))
+				juego.turnoActual.disminuirMonedas(juego.turnoActual.obtenerUnidadReciente());
+			
 		else juego.turnoActual.perderPieza(juego.turnoActual.obtenerUnidadReciente());;
 		
 	}

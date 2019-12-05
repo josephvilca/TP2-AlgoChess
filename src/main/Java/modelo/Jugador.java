@@ -20,7 +20,6 @@ public class Jugador {
 	public boolean comprar(UnidadDeJuego unidad){
 		if(this.monedas < unidad.costo()) return false;
 		
-		this.monedas -= unidad.costo();
 		this.unidadesJugador.agregar(unidad);
 		
 		return true;
@@ -51,6 +50,10 @@ public class Jugador {
 		return numeroDePiezas() == 0;
 	}
 	
+	public void disminuirMonedas(UnidadDeJuego unidad){
+		this.monedas -= unidad.costo();
+				
+	}
 	public UnidadesDeJugador unidades(){
 		return unidadesJugador;
 	}

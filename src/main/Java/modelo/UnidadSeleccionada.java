@@ -23,6 +23,7 @@ public class UnidadSeleccionada implements EstadoDeTurno{
 	@Override
 	public void terminarTurno() {
 		this.juego.terminarTurno();
+		this.juego.cambiarEstado(this.juego.enTurno);
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class UnidadSeleccionada implements EstadoDeTurno{
 	public void moverPiezaSeleccionada(int x, int y) {
 		Posicion nuevaPosicion = new Posicion(x, y);
 
-		this.juego.tablero.moverUnidad(this.juego.unidadSeleccionada.getPosicion(), nuevaPosicion);
-		this.juego.cambiarEstado(this.juego.turnoTerminado);
+		if(juego.tablero.moverUnidad(this.juego.unidadSeleccionada.getPosicion(), nuevaPosicion))
+			this.juego.cambiarEstado(this.juego.turnoTerminado);
 	}
 
 	@Override

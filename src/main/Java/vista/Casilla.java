@@ -3,6 +3,7 @@ package vista;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 public class Casilla extends StackPane{
@@ -33,6 +34,10 @@ public class Casilla extends StackPane{
 	public void stackear(String ruta){
 		ImageView imagen = new ImageView(new Image((ruta), 25, 0, true, true));
 		getChildren().add(imagen);
+	}
+	
+	public void stackear(Node nodo){
+		getChildren().add(nodo);
 	}
 	
 	public void quitarUltimo(){

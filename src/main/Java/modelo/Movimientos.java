@@ -10,7 +10,7 @@ public class Movimientos {
 		this.tablero  = tablero;
 	}
 	
-	public void mover(Posicion posIni, Posicion posDestino, UnidadDeJuego unidad){
+	public boolean mover(Posicion posIni, Posicion posDestino, UnidadDeJuego unidad){
 		if(posIni.aDistancia1(posDestino) && unidad.puedoMoverme() && tablero.unidadAliada(unidad) ){
 			
 			if(unidad instanceof SoldadoInfanteria){
@@ -18,10 +18,12 @@ public class Movimientos {
 
 			}
 			
-			if(this.tablero.posicionarUnidad(posDestino, unidad)){
+			if(this.tablero.avanzarUnidad(posDestino, unidad)){
 				this.tablero.borrarUnidad(posIni);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	
@@ -48,56 +50,56 @@ public class Movimientos {
 	private void identificarMov(Posicion pos1, Posicion pos2, UnidadDeJuego unidad){
 		if(pos2.equals(pos1.getDiagonalAbajoDerecha())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getDiagonalAbajoDerecha(), unidad )){
+			if(tablero.avanzarUnidad(pos.getDiagonalAbajoDerecha(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalAbajoIzquierda())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getDiagonalAbajoIzquierda(), unidad )){
+			if(tablero.avanzarUnidad(pos.getDiagonalAbajoIzquierda(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalArribaDerecha())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getDiagonalArribaDerecha(), unidad )){
+			if(tablero.avanzarUnidad(pos.getDiagonalArribaDerecha(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalArribaIzquierda())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getDiagonalArribaIzquierda(), unidad )){
+			if(tablero.avanzarUnidad(pos.getDiagonalArribaIzquierda(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionArriba())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getPosicionArriba(), unidad )){
+			if(tablero.avanzarUnidad(pos.getPosicionArriba(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionAbajo())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getPosicionAbajo(), unidad )){
+			if(tablero.avanzarUnidad(pos.getPosicionAbajo(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionIzquierda())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getPosicionIzquierda(), unidad )){
+			if(tablero.avanzarUnidad(pos.getPosicionIzquierda(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionDerecha())){
 			Posicion pos = unidad.getPosicion();
-			if(tablero.posicionarUnidad(pos.getPosicionDerecha(), unidad )){
+			if(tablero.avanzarUnidad(pos.getPosicionDerecha(), unidad )){
 				tablero.borrarUnidad(pos);
 			}
 		}

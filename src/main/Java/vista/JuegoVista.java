@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
@@ -17,7 +18,7 @@ public class JuegoVista {
 
     private ControladorJuego controlador;
     private BorderPane main;
-    public Casilla itemSeleccionado;
+    public Casilla itemSeleccionado1, itemSeleccionado2, casillaSeleccionada, casillaSeleccionada2;
     private Boton accionarBoton, moverBoton, comprarBoton, terminarBoton;
     public Tienda tienda;
     private VBox contenedorNombres;
@@ -34,19 +35,28 @@ public class JuegoVista {
         
         this.contenedorNombres = new VBox();
         this.contenedorNombres.setSpacing(500.0);
+        casillaSeleccionada = null;
         
         for(int i= 0; i <= 19 ; i++){
         	
         	for(int j= 0; j <= 19 ; j++){
         		Casilla casilla = new Casilla(30, i, j);
         		casilla.setOnMouseClicked(e -> {
-        			System.out.println(casilla.x);
-        			System.out.println(casilla.y);
-        			if(e.getClickCount() == 2 && tienda.indiceSeleccionado() != -1){
+        			System.out.println("casillero clickeado");
+       				if(e.getClickCount() == 2 && tienda.indiceSeleccionado() != -1){
         				this.controlador.posicionarPieza(tienda.indiceSeleccionado(), casilla);
+        				tienda.limpiarSeleccion();
         				System.out.println("doble click");
 
+        			}else if( e.getButton() == MouseButton.SECONDARY ){
+        				this.casillaSeleccionada2 = casilla;
+        				this.controlador.seleccionar2(casilla.x, casilla.y);
+        			}else if( e.getButton() == MouseButton.PRIMARY){
+        				this.casillaSeleccionada= casilla;
+        				this.controlador.seleccionar1(casilla.x, casilla.y);
         			}
+       				
+
         		});
         		
         		//casilla.setonr
@@ -63,12 +73,14 @@ public class JuegoVista {
         
         accionarBoton = new Boton("ACCIONAR");
         accionarBoton.setOnAction(e -> {
-        	//	this.controlador.
+        	this.controlador.accionar(casillaSeleccionada, casillaSeleccionada2);
+        	limpiarSeleccionadores();
 		});
         
         moverBoton = new Boton("MOVER");
         moverBoton.setOnAction(e -> {
-        	//	this.controlador.
+        	this.controlador.mover(casillaSeleccionada, casillaSeleccionada2);
+        	limpiarSeleccionadores();
 		});
         
         comprarBoton = new Boton("COMPRAR");
@@ -78,20 +90,25 @@ public class JuegoVista {
         
         terminarBoton = new Boton("TERMINAR TURNO");
         terminarBoton.setOnAction(e -> {
-        	//	this.controlador.
+        	this.controlador.terminar();
+        	limpiarSeleccionadores();
 		});
         
         tienda = new Tienda();
         
         tienda.setVisible(false);
         
-        itemSeleccionado = new Casilla(60);
-        contenedorDerecha.getChildren().add(this.itemSeleccionado);
-        contenedorDerecha.getChildren().add(accionarBoton);
-        contenedorDerecha.getChildren().add(moverBoton);
-        contenedorDerecha.getChildren().add(comprarBoton);
-        contenedorDerecha.getChildren().add(terminarBoton);
-        contenedorDerecha.getChildren().add(tienda);
+        HBox contH = new HBox();
+        
+        itemSeleccionado1 = new Casilla(60);
+        itemSeleccionado2 = new Casilla(60);
+        
+        itemSeleccionado1.getChildren().add(new Casilla(60));
+        itemSeleccionado2.getChildren().add(new Casilla(60));
+        
+        contH.getChildren().addAll(itemSeleccionado1, itemSeleccionado2);
+        
+        contenedorDerecha.getChildren().addAll(contH, accionarBoton, moverBoton, comprarBoton, terminarBoton, tienda);
                 
         contenedorDerecha.setSpacing(8.0);
         this.main.setRight(contenedorDerecha);
@@ -120,7 +137,7 @@ public class JuegoVista {
    public void setearTurnoActual(Label nombreDeJugador, Label nombreMonedas){
 	   HBox v = new HBox();
 	   v.setAlignment(Pos.CENTER);
-	   v.setSpacing(3.0);
+	   v.setSpacing(8.0);
 	   v.getChildren().addAll(nombreDeJugador, nombreMonedas);
 	   this.main.setTop(v);
 
@@ -132,5 +149,16 @@ public class JuegoVista {
    
     public ControladorJuego getControlador(){
     	return this.controlador;
+    }
+    
+    public void limpiarSeleccionadores(){
+    	itemSeleccionado1.quitarUltimo();
+        itemSeleccionado2.quitarUltimo();
+        
+    	itemSeleccionado1.getChildren().add(new Casilla(60));
+        itemSeleccionado2.getChildren().add(new Casilla(60));
+        
+        casillaSeleccionada = null;
+        casillaSeleccionada2 = null;
     }
  }

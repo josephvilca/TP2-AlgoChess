@@ -32,9 +32,9 @@ public class Tablero {
 		return (filtro1 || filtro2);
 	}
 	
-	public void moverUnidad(Posicion posInicial, Posicion posFinal){
+	public boolean moverUnidad(Posicion posInicial, Posicion posFinal){
 		UnidadDeJuego unidad =  this.casillas.get(posInicial);
-		this.mov.mover(posInicial, posFinal, unidad);
+		return mov.mover(posInicial, posFinal, unidad);
 	}
 	
 	public void borrarUnidad(Posicion pos){
@@ -52,6 +52,14 @@ public class Tablero {
 		this.casillas.put(posicionDeUnidad, unidad);
 		return true;
 	}
+	
+	public boolean avanzarUnidad(Posicion posicionDeUnidad, UnidadDeJuego unidad){
+		if(this.posicionInvalida(posicionDeUnidad)) return false;
+		unidad.mover(posicionDeUnidad);
+		this.casillas.put(posicionDeUnidad, unidad);
+		return true;
+	}
+	
 	
 	public UnidadDeJuego obtenerUnidad(Posicion posicion){
 		return this.casillas.get(posicion);
