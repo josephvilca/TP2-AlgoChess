@@ -47,11 +47,11 @@ public class Movimientos {
 			while(soldadosAliados.size() != 2){
 				soldadosAliados.remove(soldadosAliados.size()-1);
 			}
-			
+			/*
 			for(UnidadDeJuego u: soldadosAliados){
 				tablero.borrarUnidad(u.getPosicion());			
 			}
-			
+			*/
 			for(UnidadDeJuego u: soldadosAliados){
 				identificarMov(pos1, pos2, u);
 				
@@ -65,56 +65,56 @@ public class Movimientos {
 		if(pos2.equals(pos1.getDiagonalAbajoDerecha())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getDiagonalAbajoDerecha(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalAbajoIzquierda())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getDiagonalAbajoIzquierda(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalArribaDerecha())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getDiagonalArribaDerecha(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getDiagonalArribaIzquierda())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getDiagonalArribaIzquierda(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionArriba())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getPosicionArriba(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionAbajo())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getPosicionAbajo(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionIzquierda())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getPosicionIzquierda(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		
 		if(pos2.equals(pos1.getPosicionDerecha())){
 			Posicion pos = unidad.getPosicion();
 			if(tablero.avanzarUnidad(pos.getPosicionDerecha(), unidad )){
-				//tablero.borrarUnidad(pos);
+				tablero.borrarUnidad(pos);
 			}
 		}
 		

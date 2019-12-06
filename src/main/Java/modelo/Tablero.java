@@ -114,7 +114,8 @@ public class Tablero {
 	public void curar(UnidadDeJuego atacante, Posicion posAliado){
 		
 		UnidadDeJuego aliado = this.obtenerUnidad(posAliado);
-		atacante.curar(aliado);
+		if(this.unidadAliada(aliado))
+			atacante.curar(aliado);
 		
 	}
 
