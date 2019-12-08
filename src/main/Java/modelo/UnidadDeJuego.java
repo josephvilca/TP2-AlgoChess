@@ -6,14 +6,12 @@ public abstract class UnidadDeJuego {
 	protected int meeleDamage, rangeDamage; 
 
 	public Posicion posicion;
-	public Jugador dueno;
-	
 
 	
 	public void recibirDano(int damage){
 		this.vida -= damage;
 		if(this.vida <= 0) {
-			this.dueno.perderPieza(this);
+			vida = 0;
 		}
 	}
 	

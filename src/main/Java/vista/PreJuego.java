@@ -30,7 +30,7 @@ public class PreJuego {
 		contenedorInput1.setAlignment(Pos.CENTER);
 		
 		HBox contenedorInput2 = new HBox();
-		Label label2 = new Label("NOMBRE DE JUGADOR1 :");
+		Label label2 = new Label("NOMBRE DE JUGADOR2 :");
 		TextField inputJugador2 = new TextField();
 		inputJugador2.setMaxWidth(150.0);
 		contenedorInput2.getChildren().addAll(label2, inputJugador2);
@@ -46,7 +46,7 @@ public class PreJuego {
 		contenedorV.getChildren().addAll(contenedorInput1, contenedorInput2, botonEmpezar);
 	
 		botonEmpezar.setOnAction(e -> {
-            controladorDeEscena.activate("juegoVista");
+			controladorDeEscena.activate("juegoVista");
             juegoVista.getControlador().seleccionarNombreJugador2(inputJugador2.getText());
             juegoVista.getControlador().seleccionarNombreJugador1(inputJugador1.getText());
             juegoVista.getControlador().actualizarNombreTurnoActual();

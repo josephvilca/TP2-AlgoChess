@@ -188,6 +188,64 @@ public class JuegoTest {
     }
 
 	@Test
+    public void catapultaAtacaAUnEnemigoYAfectaALosContiguosEnUnAreaDe2(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(3, 12, 13);
+
+    	juego.concluirTurno();
+    	
+    	juego.comprarUnidad(3, 12, 5);// j2 compra catapulta
+    	juego.comprarUnidad(0, 13, 6);// j2 compra soldado
+    	juego.comprarUnidad(2, 11, 4);// j2 compra curandero
+    	//juego.comprarUnidad(0, 12, 4);// j2 compra soldado
+    	
+    	
+    	juego.concluirTurno();
+    	
+    	juego.seleccionarDelTablero(12, 13);
+    	juego.accionar(13, 6);
+    	juego.concluirTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(12, 5);
+    	assertEquals(unidad.vida(), 30);
+
+    	unidad = juego.obtenerUnidadDelTablero(13, 6);
+    	assertEquals(unidad.vida(), 80);
+    	
+    	unidad = juego.obtenerUnidadDelTablero(11, 4);
+    	assertEquals(unidad.vida(), 55);
+
+    }
+
+	@Test
+    public void catapultaAtacaAUnEnemigoYAfectaALosContiguosEnUnAreaDe2PeroNoAunoNoContiguo(){
+ 
+    	Juego juego = new Juego();
+    	
+    	juego.comprarUnidad(3, 12, 13);
+
+    	juego.concluirTurno();
+    	
+    	juego.comprarUnidad(3, 12, 5);// j2 compra catapulta
+    	juego.comprarUnidad(0, 13, 6);// j2 compra soldado
+    	juego.comprarUnidad(2, 11, 4);// j2 compra curandero
+    	juego.comprarUnidad(0, 14, 4);// j2 compra soldado NO CONTIGUO
+    	
+    	
+    	juego.concluirTurno();
+    	
+    	juego.seleccionarDelTablero(12, 13);
+    	juego.accionar(13, 6);
+    	juego.concluirTurno();	 
+    	
+    	UnidadDeJuego unidad = juego.obtenerUnidadDelTablero(14, 4);
+    	assertEquals(unidad.vida(), 100);
+
+    }
+
+	@Test
     public void noSePuedeColocar(){	
  /*
     	Juego juego = new Juego();

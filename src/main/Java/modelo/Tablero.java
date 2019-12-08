@@ -68,8 +68,10 @@ public class Tablero {
 	
 	public void atacar(Jinete atacante, Posicion posVictima){
 		
-		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
+		if(victima == null || this.unidadAliada(victima)) return;
+		
+		
 		List<UnidadDeJuego> unidadesCerca = atacante.posicion.unidadesCercanas(this);
 		System.out.println(unidadesCerca.size());
 		
@@ -90,23 +92,59 @@ public class Tablero {
 
 		if(enemigosCerca ) atacante.setearAtaque(new AtaqueCercano());
 		atacante.atacar(victima);
-		if(victima.estaDestruido())
+		if(victima.estaDestruido()){
 			this.unidadesEnemigas.perderPieza(victima);
+			this.casillas.remove(posVictima);
+		}
+	}
+
+	public void atacar(Catapulta atacante, Posicion posVictima){
+		
+		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
+		if(victima == null) return;
+		
+		List<UnidadDeJuego> unidadesAAtacar = new ArrayList<UnidadDeJuego>();
+		
+		List<UnidadDeJuego> unidadesCerca1 = posVictima.unidadesCercanasA1(this);
+		List<UnidadDeJuego> unidadesCerca2;
+		
+		unidadesAAtacar.add(victima);
+		for(UnidadDeJuego u : unidadesCerca1 ){
+			unidadesCerca2 = u.getPosicion().unidadesCercanasA1(this);
+			
+			if(!unidadesAAtacar.contains(u)) unidadesAAtacar.add(u);
+			for(UnidadDeJuego y : unidadesCerca2){
+				if(!unidadesAAtacar.contains(y)) unidadesAAtacar.add(y);
+			}
+		}
+		
+		for(UnidadDeJuego u :unidadesAAtacar){
+			atacante.atacar(u);
+			if(u.estaDestruido()){
+				this.unidadesEnemigas.perderPieza(u);
+				this.casillas.remove(u.getPosicion());
+			}
+		}
+		
 		
 	}
+
 
 
 	public void atacar(UnidadDeJuego atacante, Posicion posVictima){
 		
 		UnidadDeJuego victima = this.obtenerUnidad(posVictima);
+		if(victima == null || this.unidadAliada(victima)) return;
 
 		atacante.atacar(victima);
-		
+		if(victima.estaDestruido()){
+			this.unidadesEnemigas.perderPieza(victima);
+			this.casillas.remove(posVictima);
+		}
 	}
 	
 	public void accionar(UnidadDeJuego atacante, Posicion posObjetivo){
 		
-		//UnidadDeJuego objetivo = this.obtenerUnidad(posObjetivo);
 		atacante.accionar(this, posObjetivo);
 				
 	}

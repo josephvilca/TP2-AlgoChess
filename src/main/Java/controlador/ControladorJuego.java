@@ -74,6 +74,7 @@ public class ControladorJuego {
     	if(casilla == null || casillaObjetivo == null) return;
     	juego.accionar(casillaObjetivo.x(), casillaObjetivo.y());
     	
+    	this.actualizarVista();
     	this.actualizarObjetivo(casillaObjetivo);	
     }
     
@@ -169,6 +170,7 @@ public class ControladorJuego {
     
     public void seleccionarNombreJugador2(String nombre){
     	Label label = new Label(nombre);
+    	label.setAlignment(Pos.CENTER_RIGHT);
     	this.juegoVista.setearNombreJugador(label);
     	this.juego.setNombreJugador2(nombre);
     	
@@ -176,6 +178,7 @@ public class ControladorJuego {
     
     public void seleccionarNombreJugador1(String nombre){
     	Label label = new Label(nombre);
+    	label.setAlignment(Pos.CENTER.CENTER_RIGHT);
     	this.juegoVista.setearNombreJugador(label);
     	this.juego.setNombreJugador1(nombre);
     	
@@ -190,14 +193,6 @@ public class ControladorJuego {
     	this.juegoVista.setearTurnoActual(label, labelCoins);
     }
     
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-        return null;
-    }
 
 
 }

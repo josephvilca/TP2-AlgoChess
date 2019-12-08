@@ -8,7 +8,7 @@ public class Juego {
 	Tienda tienda;
 	Jugador jugador1, jugador2, turnoActual;
 	UnidadDeJuego unidadSeleccionada;
-	EstadoDeTurno enTurno, estadoSeleccionado, faseInicial, faseInicial2, turnoTerminado;
+	EstadoDeTurno enTurno, estadoSeleccionado, faseInicial, faseInicial2, turnoTerminado, finDelJuego;
 	
 	EstadoDeTurno estadoActual;
 	
@@ -32,6 +32,8 @@ public class Juego {
 		turnoTerminado = new TurnoTerminado(this);
 		faseInicial = new FaseInicial(this);
 		faseInicial2 = new FaseInicial2(this);
+		finDelJuego = new FinDelJuego(this);
+		
 		estadoActual = faseInicial;
 		
 		tablero.actualizarUnidadesDeJugadores(jugador1.unidades(), jugador2.unidades());
@@ -93,7 +95,10 @@ public class Juego {
 
 	}
 	
-
+	public boolean finDelJuego(){
+		return jugador1.derrotado() || jugador2.derrotado();
+	}
+	
 	public void moverPiezaSeleccionada(int x, int y){
 		estadoActual.moverPiezaSeleccionada(x, y);
 	}

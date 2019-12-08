@@ -20,8 +20,12 @@ public class TurnoTerminado implements EstadoDeTurno{
 
 	@Override
 	public void terminarTurno() {
+
 		juego.terminarTurno();
-		juego.cambiarEstado(juego.enTurno);
+		if(juego.finDelJuego()) {
+			juego.cambiarEstado(juego.finDelJuego);
+		}else
+			juego.cambiarEstado(juego.enTurno);
 	}
 
 	@Override

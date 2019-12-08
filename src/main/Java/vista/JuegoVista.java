@@ -35,6 +35,7 @@ public class JuegoVista {
         
         this.contenedorNombres = new VBox();
         this.contenedorNombres.setSpacing(500.0);
+        contenedorNombres.setAlignment(Pos.CENTER);
         casillaSeleccionada = null;
         
         for(int i= 0; i <= 19 ; i++){
@@ -42,8 +43,7 @@ public class JuegoVista {
         	for(int j= 0; j <= 19 ; j++){
         		Casilla casilla = new Casilla(30, i, j);
         		casilla.setOnMouseClicked(e -> {
-        			System.out.println("casillero clickeado");
-       				if(e.getClickCount() == 2 && tienda.indiceSeleccionado() != -1){
+        			if(e.getClickCount() == 2 && tienda.indiceSeleccionado() != -1){
         				this.controlador.posicionarPieza(tienda.indiceSeleccionado(), casilla);
         				tienda.limpiarSeleccion();
         				System.out.println("doble click");
@@ -59,14 +59,14 @@ public class JuegoVista {
 
         		});
         		
-        		//casilla.setonr
         		mapa.add(casilla, i, j);
         		
             }
         	
         }
-        
-        this.main.setCenter(this.mapa);
+   
+        mapa.setAlignment(Pos.CENTER);
+        main.setCenter(mapa);
         
         VBox contenedorDerecha = new VBox();
         contenedorDerecha.setAlignment(Pos.CENTER_LEFT);
@@ -114,12 +114,6 @@ public class JuegoVista {
         this.main.setRight(contenedorDerecha);
         this.main.setLeft(this.contenedorNombres);
         
-        
-/*
-    public void setControlador(ControladorDelJuego controlador) {
-        this.controlador = controlador;
-    }
-*/
     }
     
     public Pane pane(){
